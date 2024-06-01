@@ -1,7 +1,7 @@
 # Dampson-HMS
 
 ## Overview
-Dampson-HMS (Hospital Management System) is a comprehensive software solution designed to streamline the operations and management of hospitals and healthcare institutions. Our system integrates various functionalities necessary for effective hospital management, including patient registration, appointment scheduling, billing, inventory management, and more.
+Dampson-HMS (Hospital Management System) is a comprehensive software solution designed to streamline the operations and management of clinic and healthcare institutions. Our system integrates various functionalities necessary for effective hospital management, including patient management, appointment scheduling, billing, and more.
 
 ![Dampson-HMS](https://github.com/saif580/Dampson-HMS/assets/29210607/28549df2-f72b-47c0-b1cb-a89ba5e7404a)
 
@@ -16,8 +16,8 @@ For detailed documentation, guidelines, and collaboration, visit our Confluence 
 [Dampson-HMS Confluence](https://dampson.atlassian.net/wiki/spaces/DampsonHMS/overview)
 
 ## Features
-- **Patient Registration and Management**: Efficiently manage patient data and history.
+- **Patient Management**: Efficiently manage patient data and history.
 - **Appointment Scheduling**: Streamline the scheduling process for both patients and healthcare providers.
 - **Billing and Invoicing**: Automated billing processes to ensure accurate and timely payments.
-- **Inventory Management**: Keep track of medical supplies and equipment.
+- **Medical record service**: Keep track of medical records.
 - **Reporting and Analytics**: Generate detailed reports and analytics for better decision-making.
