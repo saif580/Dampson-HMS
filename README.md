@@ -1,4 +1,2 @@
 # Dampson-HMS
-![Dampson](https://github.com/saif580/Dampson-HMS/assets/29210607/5255ae98-32be-442d-8c00-add0252e35d9)
-
-
+![Dampson (1)](https://github.com/saif580/Dampson-HMS/assets/29210607/28549df2-f72b-47c0-b1cb-a89ba5e7404a)
