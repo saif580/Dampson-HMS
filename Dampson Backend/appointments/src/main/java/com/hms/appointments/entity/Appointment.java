@@ -3,15 +3,18 @@ package com.hms.appointments.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Document(collection = "appointments")
 public class Appointment {
+
     @Id
     private String id;
-    private String patientId;
-    private Date date;
-    private String time;
+    private String name;
+    private String email;
+    private String appointmentDate;
+    private String appointmentTime;
     private String status;
 
     // getters and setters
@@ -24,28 +27,36 @@ public class Appointment {
         this.id = id;
     }
 
-    public String getPatientId() {
-        return patientId;
+    public String getName() {
+        return name;
     }
 
-    public void setPatientId(String patientId) {
-        this.patientId = patientId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Date getDate() {
-        return date;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getTime() {
-        return time;
+    public String getAppointmentDate() {
+        return appointmentDate;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setAppointmentDate(LocalDate appointmentDate) {
+        this.appointmentDate = String.valueOf(appointmentDate);
+    }
+
+    public String getAppointmentTime() {
+        return appointmentTime;
+    }
+
+    public void setAppointmentTime(LocalTime appointmentTime) {
+        this.appointmentTime = String.valueOf(appointmentTime);
     }
 
     public String getStatus() {
