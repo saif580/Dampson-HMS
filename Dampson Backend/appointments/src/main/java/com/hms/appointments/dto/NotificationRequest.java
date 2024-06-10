@@ -6,16 +6,34 @@ public class NotificationRequest {
     private String subject;
     private String message;
     private String status;
-    private String notificationType; // New field
+    private String notificationType;
+    private String clinicName;
+    private String doctorName;
+    private String contactNumber;
+    private String clinicEmail;
+    private String clinicSpeciality;
+    private String clinicTime;
+    private String operatingDays;
+    private double doctorFees;
 
-    // Constructor, getters, and setters
-    public NotificationRequest(String appointmentId, String email, String subject, String message, String status, String notificationType) {
+    // Constructor with all fields
+    public NotificationRequest(String appointmentId, String email, String subject, String message, String status, String notificationType,
+                               String clinicName, String doctorName, String contactNumber, String clinicEmail,
+                               String clinicSpeciality, String clinicTime, String operatingDays, double doctorFees) {
         this.appointmentId = appointmentId;
         this.email = email;
         this.subject = subject;
         this.message = message;
         this.status = status;
         this.notificationType = notificationType;
+        this.clinicName = clinicName;
+        this.doctorName = doctorName;
+        this.contactNumber = contactNumber;
+        this.clinicEmail = clinicEmail;
+        this.clinicSpeciality = clinicSpeciality;
+        this.clinicTime = clinicTime;
+        this.operatingDays = operatingDays;
+        this.doctorFees = doctorFees;
     }
 
     // Getters and setters
@@ -66,5 +84,69 @@ public class NotificationRequest {
 
     public void setNotificationType(String notificationType) {
         this.notificationType = notificationType;
+    }
+
+    public String getClinicName() {
+        return clinicName;
+    }
+
+    public void setClinicName(String clinicName) {
+        this.clinicName = clinicName;
+    }
+
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
+    public String getClinicEmail() {
+        return clinicEmail;
+    }
+
+    public void setClinicEmail(String clinicEmail) {
+        this.clinicEmail = clinicEmail;
+    }
+
+    public String getClinicSpeciality() {
+        return clinicSpeciality;
+    }
+
+    public void setClinicSpeciality(String clinicSpeciality) {
+        this.clinicSpeciality = clinicSpeciality;
+    }
+
+    public String getClinicTime() {
+        return clinicTime;
+    }
+
+    public void setClinicTime(String clinicTime) {
+        this.clinicTime = clinicTime;
+    }
+
+    public String getOperatingDays() {
+        return operatingDays;
+    }
+
+    public void setOperatingDays(String operatingDays) {
+        this.operatingDays = operatingDays;
+    }
+
+    public double getDoctorFees() {
+        return doctorFees;
+    }
+
+    public void setDoctorFees(double doctorFees) {
+        this.doctorFees = doctorFees;
     }
 }

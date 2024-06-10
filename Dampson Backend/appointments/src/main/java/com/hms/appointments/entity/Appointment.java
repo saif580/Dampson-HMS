@@ -14,7 +14,7 @@ public class Appointment {
     private String name;
     private String email;
     private String appointmentDate;
-    private String appointmentTime;
+    private LocalTime appointmentTime;
     private String status;
 
     // getters and setters
@@ -51,12 +51,21 @@ public class Appointment {
         this.appointmentDate = String.valueOf(appointmentDate);
     }
 
-    public String getAppointmentTime() {
+//    public String getAppointmentTime() {
+//        return appointmentTime;
+//    }
+//
+//    public void setAppointmentTime(LocalTime appointmentTime) {
+//        this.appointmentTime = String.valueOf(appointmentTime);
+//    }
+
+
+    public LocalTime getAppointmentTime() {
         return appointmentTime;
     }
 
     public void setAppointmentTime(LocalTime appointmentTime) {
-        this.appointmentTime = String.valueOf(appointmentTime);
+        this.appointmentTime = appointmentTime;
     }
 
     public String getStatus() {
@@ -66,4 +75,5 @@ public class Appointment {
     public void setStatus(String status) {
         this.status = status;
     }
+
 }
