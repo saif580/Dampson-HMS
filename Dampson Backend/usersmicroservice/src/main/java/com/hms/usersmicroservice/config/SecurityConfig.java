@@ -7,6 +7,7 @@ import com.hms.usersmicroservice.service.TokenBlacklistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -39,6 +40,16 @@ public class SecurityConfig {
                         authorizeRequests
                                 .requestMatchers("/authenticate").permitAll()
                                 .requestMatchers("/register").hasRole("DOCTOR")
+                                .requestMatchers(HttpMethod.GET, "/users/**").hasAnyRole("DOCTOR","RECEPTIONIST")
+                                .requestMatchers(HttpMethod.GET, "/api/clinics/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/clinics/**").hasRole("DOCTOR")
+                                .requestMatchers(HttpMethod.PUT, "/api/clinics/**").hasRole("DOCTOR")
+                                .requestMatchers(HttpMethod.DELETE, "/api/clinics/**").hasRole("DOCTOR")
+                                .requestMatchers("/patients").hasAnyRole("RECEPTIONIST", "DOCTOR")
+                                .requestMatchers(HttpMethod.DELETE, "/patients/**").hasRole("DOCTOR")
+                                .requestMatchers(HttpMethod.POST, "/medicalrecords").hasRole("DOCTOR")
+                                .requestMatchers("/medicalrecords/**").hasAnyRole("RECEPTIONIST", "DOCTOR")
+                                .requestMatchers("/billings/**").hasAnyRole("RECEPTIONIST", "DOCTOR")
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManagement ->

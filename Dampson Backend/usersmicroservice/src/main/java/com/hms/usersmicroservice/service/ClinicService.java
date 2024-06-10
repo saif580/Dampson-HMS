@@ -9,6 +9,7 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClinicService {
@@ -29,5 +30,9 @@ public class ClinicService {
 
     public List<Clinic> findById(User doctor) {
         return clinicRepository.findByDoctor(doctor);
+    }
+
+    public Optional<Clinic> getClinicById(Long clinicId) {
+        return clinicRepository.findById(clinicId);
     }
 }

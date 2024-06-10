@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/clinics")
@@ -41,5 +42,10 @@ public class ClinicController {
         return new ResponseEntity<>(clinics, HttpStatus.OK);
     }
 
-    // Other endpoints if needed
+    @GetMapping("/{clinicId}")
+    public ResponseEntity<Clinic> getClinicById(@PathVariable Long clinicId) {
+        Optional<Clinic> clinic = clinicService.getClinicById(clinicId);
+        return clinic.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
 }

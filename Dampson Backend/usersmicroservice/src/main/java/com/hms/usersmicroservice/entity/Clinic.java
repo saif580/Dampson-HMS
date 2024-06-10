@@ -35,6 +35,7 @@ public class Clinic {
     private String clinicFacilities;
     private String operatingDays;
     private int appointmentDuration;
+    private double doctorFees;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -158,5 +159,13 @@ public class Clinic {
 
     public void setDoctor(User doctor) {
         this.doctor = doctor;
+    }
+
+    public double getDoctorFees() {
+        return doctorFees;
+    }
+
+    public void setDoctorFees(double doctorFees) {
+        this.doctorFees = doctorFees;
     }
 }
