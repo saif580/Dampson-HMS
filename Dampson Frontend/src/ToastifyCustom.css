@@ -1,0 +1,44 @@
+/* Override the default toastify styles */
+.Toastify__toast {
+  font-size: 1.5rem; /* Large font size for readability */
+  padding: 20px 30px; /* Padding to make the toast spacious */
+  border-radius: 8px; /* Rounded corners for a modern look */
+  line-height: 1.5; /* Improve line height for readability */
+  max-width: 90%; /* Ensure the toast doesn't take up the entire screen */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  transition: all 0.3s ease; /* Smooth transition for visibility changes */
+  display: flex;
+  align-items: center;
+}
+
+/* Customize the success and error toast styles */
+.Toastify__toast--success {
+  background-color: #28a745; /* Green background for success toasts */
+  color: #fff; /* White text color */
+}
+
+.Toastify__toast--error {
+  background-color: #dc3545; /* Red background for error toasts */
+  color: #fff; /* White text color */
+}
+
+/* Customize the close button */
+.Toastify__close-button {
+  width: 24px; /* Increase size of the close button */
+  height: 24px;
+  color: #fff; /* White color for the close button */
+}
+
+/* Customize the toast icon */
+.Toastify__toast-icon {
+  font-size: 2rem; /* Increase the size of the icon */
+  margin-right: 15px; /* Add space between the icon and the text */
+}
+
+/* Adjust margins for better placement */
+.Toastify__toast-container {
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
