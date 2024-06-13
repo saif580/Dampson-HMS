@@ -55,3 +55,24 @@
   background-color: #666666;
   color: white;
 }
+
+
+
+
+
+/* Load More Button Styling */
+.load-more-button {
+  background-color: #666666;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.load-more-button:hover {
+  background-color: #555;
+}

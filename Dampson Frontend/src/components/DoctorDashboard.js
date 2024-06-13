@@ -4,7 +4,8 @@ import { Bar, Doughnut } from 'react-chartjs-2';
 import { FaBell, FaClipboardList, FaCog, FaMoneyBillWave, FaSignOutAlt, FaUserMd, FaUserPlus, FaUserTie } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
-import Appointment from './Appointment'; // Import the Appointment component
+import AddEmployee from './AddEmployee';
+import Appointment from './Appointment';
 import './Dashboard.css';
 
 // Register the necessary Chart.js components
@@ -39,6 +40,8 @@ const DoctorDashboard = () => {
     switch (activeMenu) {
       case 'Appointments':
         return <Appointment />;
+      case 'AddEmployee':
+        return <AddEmployee />;
       case 'Dashboard':
       default:
         return (
@@ -69,11 +72,6 @@ const DoctorDashboard = () => {
                 <div className="chart-container">
                   <Doughnut data={doughnutData} />
                 </div>
-                {/* <div className="chart-legend">
-                  <p><span className="legend-color" style={{ backgroundColor: '#666666' }}></span>0-20</p>
-                  <p><span className="legend-color" style={{ backgroundColor: '#999999' }}></span>20-50</p>
-                  <p><span className="legend-color" style={{ backgroundColor: '#cccccc' }}></span>50></p>
-                </div> */}
               </div>
             </div>
           </>

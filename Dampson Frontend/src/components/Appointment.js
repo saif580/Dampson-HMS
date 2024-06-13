@@ -5,6 +5,7 @@ const Appointment = () => {
   const [appointments, setAppointments] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
+  const [lazyLoadCount, setLazyLoadCount] = useState(9);
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -41,17 +42,22 @@ const Appointment = () => {
       return new Date(a.appointmentDate) - new Date(b.appointmentDate);
     });
 
-    const todayAppointments = sortedAppointments.filter(appointment => appointment.appointmentDate === today);
-    const otherAppointments = sortedAppointments.filter(appointment => appointment.appointmentDate !== today);
+    const todayAppointments = sortedAppointments.filter(appointment => appointment.appointmentDate >= today);
 
-    return [...todayAppointments, ...otherAppointments];
+    return todayAppointments;
   };
 
-  const filteredAppointments = appointments.filter(appointment => {
-    const matchesDate = selectedDate ? appointment.appointmentDate === selectedDate : true;
-    const matchesName = appointment.name.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesDate && matchesName;
-  });
+  const loadMoreAppointments = () => {
+    setLazyLoadCount(prevCount => prevCount + 9);
+  };
+
+  const filteredAppointments = appointments
+    .filter(appointment => {
+      const matchesDate = selectedDate ? appointment.appointmentDate === selectedDate : true;
+      const matchesName = appointment.name.toLowerCase().includes(searchTerm.toLowerCase());
+      return matchesDate && matchesName;
+    })
+    .slice(0, lazyLoadCount);
 
   return (
     <div className="appointment">
@@ -93,6 +99,9 @@ const Appointment = () => {
           ))}
         </tbody>
       </table>
+      {filteredAppointments.length < appointments.length && (
+        <button className='load-more-button' onClick={loadMoreAppointments}>Load More</button>
+      )}
     </div>
   );
 };
