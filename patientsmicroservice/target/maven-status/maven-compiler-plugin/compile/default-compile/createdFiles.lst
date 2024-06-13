@@ -1,5 +1,0 @@
-com\hms\patientsmicroservice\entity\Patient.class
-com\hms\patientsmicroservice\PatientsmicroserviceApplication.class
-com\hms\patientsmicroservice\repository\PatientRepository.class
-com\hms\patientsmicroservice\service\PatientService.class
-com\hms\patientsmicroservice\controller\PatientController.class
