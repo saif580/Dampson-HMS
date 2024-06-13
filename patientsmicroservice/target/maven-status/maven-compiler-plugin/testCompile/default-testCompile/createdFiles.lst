@@ -1,0 +1,4 @@
+com\hms\patientsmicroservice\service\PatientServiceImplTest.class
+com\hms\patientsmicroservice\service\PatientServiceIntegrationTest.class
+com\hms\patientsmicroservice\PatientsmicroserviceApplicationTests.class
+com\hms\patientsmicroservice\service\PatientServiceTest.class
