@@ -24,7 +24,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) // Disable CSRF protection
                 .authorizeExchange(exchanges -> exchanges
-                        .pathMatchers("/authenticate", "/register").permitAll()
+                        .pathMatchers("/authenticate", "/register","/appointments/book").permitAll()
                         .anyExchange().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2

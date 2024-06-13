@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.hms.patientsmicroservice.PatientsmicroserviceApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.13 s -- in com.hms.patientsmicroservice.PatientsmicroserviceApplicationTests

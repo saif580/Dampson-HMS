@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.hms.patientsmicroservice.service.PatientServiceIntegrationTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.750 s -- in com.hms.patientsmicroservice.service.PatientServiceIntegrationTest
