@@ -39,7 +39,7 @@ public class SecurityConfig {
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers("/authenticate").permitAll()
-                                .requestMatchers("/register").hasRole("DOCTOR")
+                                .requestMatchers("register").hasRole("DOCTOR")
                                 .requestMatchers(HttpMethod.GET, "/users/**").hasAnyRole("DOCTOR","RECEPTIONIST")
                                 .requestMatchers(HttpMethod.GET, "/api/clinics/**").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/api/clinics/**").hasRole("DOCTOR")
@@ -50,6 +50,8 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.POST, "/medicalrecords").hasRole("DOCTOR")
                                 .requestMatchers("/medicalrecords/**").hasAnyRole("RECEPTIONIST", "DOCTOR")
                                 .requestMatchers("/billings/**").hasAnyRole("RECEPTIONIST", "DOCTOR")
+                                .requestMatchers(HttpMethod.GET, "/api/user-appointments").hasAnyRole("RECEPTIONIST", "DOCTOR")
+
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManagement ->
