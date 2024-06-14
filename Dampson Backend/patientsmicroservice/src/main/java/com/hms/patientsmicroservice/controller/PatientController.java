@@ -50,14 +50,17 @@ public class PatientController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Patient> registerPatient(@RequestBody Patient patient) {
+    public ResponseEntity<String> registerPatient(@RequestBody Patient patient) {
         logger.debug("Registering patient: {}", patient);
         try {
             Patient registeredPatient = patientService.savePatient(patient);
-            return ResponseEntity.ok(registeredPatient);
+            return ResponseEntity.ok("Patient registered successfully.");
+        } catch (IllegalArgumentException e) {
+            logger.error("Error registering patient: {}", patient, e);
+            return ResponseEntity.status(400).body(e.getMessage()); // Bad request for duplicate first name
         } catch (Exception e) {
             logger.error("Error registering patient: {}", patient, e);
-            return ResponseEntity.status(500).body(null);
+            return ResponseEntity.status(500).body("An internal server error occurred. Please try again later."); // Internal server error for other issues
         }
     }
 
