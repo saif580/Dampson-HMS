@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Entity
 public class Clinic {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long clinicId;
 
     @ManyToOne
