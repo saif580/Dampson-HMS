@@ -59,7 +59,11 @@ const BookingForm = ({ onSubmit, onClose }) => {
       }
     } catch (error) {
       console.error("Error:", error);
-      toast.error(`An error occurred: ${error.message}`);
+      if (error.message.includes("503")) {
+        toast.error("Service is currently unavailable. Please try again later.");
+      } else {
+        toast.error(`An error occurred: ${error.message}`);
+      }
     } finally {
       setLoading(false);
     }

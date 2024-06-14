@@ -6,7 +6,10 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import AddEmployee from './AddEmployee';
 import Appointment from './Appointment';
+import Clinic from './Clinic';
 import './Dashboard.css';
+import PatientRecords from './PatientRecords';
+import Prescription from './Prescription';
 
 // Register the necessary Chart.js components
 Chart.register(BarElement, CategoryScale, LinearScale, DoughnutController, ArcElement);
@@ -42,6 +45,12 @@ const DoctorDashboard = () => {
         return <Appointment />;
       case 'AddEmployee':
         return <AddEmployee />;
+      case 'Clinic':
+        return <Clinic />;
+      case 'Records':
+        return <PatientRecords />;
+      case 'Prescription':
+        return <Prescription />;
       case 'Dashboard':
       default:
         return (
