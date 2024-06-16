@@ -39,6 +39,25 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public User updateUser(Long userId, User userDetails) {
+        User user = findById(userId);
+        user.setUsername(userDetails.getUsername());
+        user.setPassword(passwordEncoder.encode(userDetails.getPassword()));
+        return userRepository.save(user);
+    }
+
+    public void updatePassword(String username, String currentPassword, String newPassword) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (!passwordEncoder.matches(currentPassword, user.getPassword())) {
+            throw new RuntimeException("Current password is incorrect");
+        }
+
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+    }
+
     public void deleteUser(Long userId) {
         userRepository.deleteById(userId);
     }
