@@ -36,8 +36,10 @@ const PatientRecords = () => {
 
         const data = await response.json();
         setPatients(data);
+        toast.success("Patient record fetched successfully!");
       } catch (error) {
         console.error("Error fetching patients:", error);
+        toast.error(`Error fetching patients: ${error.message}`);
       } finally {
         setLoading(false);
       }

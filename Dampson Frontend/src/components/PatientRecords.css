@@ -20,7 +20,7 @@
   
   .patient-records .btn {
     display: inline-block;
-    background-color: #666666;
+    background-color: #999;
     font-size: 1.6rem;
     font-family: inherit;
     font-weight: 500;
@@ -34,7 +34,7 @@
   }
   
   .patient-records .btn:hover {
-    background-color: #555555;
+    background-color: #444;
   }
   
   .patient-records .spinner {
@@ -98,7 +98,7 @@
   }
   
   .patient-modal .btn {
-    background-color: #4CAF50;
+    background-color: #999;
     color: white;
     border: none;
     padding: 0.5rem 1rem;
@@ -111,6 +111,6 @@
   }
   
   .patient-modal .btn:hover {
-    background-color: #45a049;
+    background-color: #444;
   }
   

@@ -4,7 +4,11 @@ import { Bar, Doughnut } from 'react-chartjs-2';
 import { FaBell, FaClipboardList, FaCog, FaMoneyBillWave, FaSignOutAlt, FaUserMd } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import Appointment from './Appointment';
 import './Dashboard.css';
+import PatientRecords from './PatientRecords';
+import Prescription from './Prescription';
+import Settings from './Settings';
 
 // Register the necessary Chart.js components
 Chart.register(BarElement, CategoryScale, LinearScale, DoughnutController, ArcElement);
@@ -34,6 +38,53 @@ const DoctorDashboard = () => {
     ]
   };
 
+  const renderContent = () => {
+    switch (activeMenu) {
+      case 'Appointments':
+        return <Appointment />;
+      case 'Records':
+        return <PatientRecords />;
+      case 'Prescription':
+        return <Prescription />;
+      case 'Settings':
+        return <Settings />;
+      case 'Dashboard':
+      default:
+        return (
+          <>
+            <div className="cards">
+              <div className="card">
+                <h3>Appointments</h3>
+                <p>70</p>
+              </div>
+              <div className="card">
+                <h3>Visitors</h3>
+                <p>12,302</p>
+              </div>
+              <div className="card">
+                <h3>Refunds</h3>
+                <p>963</p>
+              </div>
+            </div>
+            <div className="charts">
+              <div className="chart">
+                <h3>All Appointments</h3>
+                <div className="chart-container">
+                  <Bar data={barData} />
+                </div>
+              </div>
+              <div className="chart">
+                <h3>Top Categories</h3>
+                <div className="chart-container">
+                  <Doughnut data={doughnutData} />
+                </div>
+              </div>
+            </div>
+          </>
+        );
+    }
+  };
+
   return (
     <div className="dashboard">
       <div className="sidebar">
@@ -56,39 +107,7 @@ const DoctorDashboard = () => {
             <FaBell />
           </div>
         </header>
-        <div className="cards">
-          <div className="card">
-            <h3>Appointments</h3>
-            <p>70</p>
-          </div>
-          <div className="card">
-            <h3>Visitors</h3>
-            <p>12,302</p>
-          </div>
-          <div className="card">
-            <h3>Refunds</h3>
-            <p>963</p>
-          </div>
-        </div>
-        <div className="charts">
-          <div className="chart">
-            <h3>All Appointments</h3>
-            <div className="chart-container">
-              <Bar data={barData} />
-            </div>
-          </div>
-          <div className="chart">
-            <h3>Top Categories</h3>
-            <div className="chart-container">
-              <Doughnut data={doughnutData} />
-            </div>
-            {/* <div className="chart-legend">
-              <p><span className="legend-color" style={{ backgroundColor: '#666666' }}></span>0-20</p>
-              <p><span className="legend-color" style={{ backgroundColor: '#999999' }}></span>20-50</p>
-              <p><span className="legend-color" style={{ backgroundColor: '#cccccc' }}></span>50></p>
-            </div> */}
-          </div>
-        </div>
+        {renderContent()}
       </div>
     </div>
   );

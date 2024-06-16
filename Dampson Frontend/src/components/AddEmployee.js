@@ -30,8 +30,10 @@ const AddEmployee = () => {
 
         const data = await response.json();
         setEmployees(data);
+        toast.success("Employees data fetched successfully!"); // Show success toast
       } catch (error) {
         console.error("Error fetching employees:", error);
+        toast.error(`Error fetching employees: ${error.message}`);
       }
     };
 
@@ -107,74 +109,82 @@ const AddEmployee = () => {
       <button className="btn" onClick={() => setIsModalOpen(true)}>
         Add Employee
       </button>
+      
+      {loading ? (
+        <div className="spinner">
+          <ClipLoader size={50} color={"#123abc"} loading={loading} />
+        </div>
+      ) : (
+        <>
+          <table className="employee-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {employees.map((employee) => (
+                <tr key={employee.userId}>
+                  <td>{employee.userId}</td>
+                  <td>{employee.username}</td>
+                  <td>{employee.role}</td>
+                  <td>
+                    {employee.userId !== 1 && (
+                      <button
+                        className="btn-delete"
+                        onClick={() => handleDeleteEmployee(employee.userId)}
+                      >
+                        Delete
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
 
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        className="employee-modal"
-      >
-        <h2 className="modal__header">Add New Employee</h2>
-        <form className="modal__form" onSubmit={handleAddEmployee}>
-          <label>Username</label>
-          <input
-            type="text"
-            name="username"
-            value={newEmployee.username}
-            onChange={handleInputChange}
-            required
-          />
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            value={newEmployee.password}
-            onChange={handleInputChange}
-            required
-          />
-          <label>RECEPTIONIST/NURSE</label>
-          <input
-            type="text"
-            name="role"
-            value={newEmployee.role}
-            onChange={handleInputChange}
-            disabled
-            required
-          />
-          <button className="btn" type="submit" disabled={loading}>
-            {loading ? <ClipLoader size={20} color={"#fff"} /> : "Add Employee"}
-          </button>
-        </form>
-      </Modal>
-
-      <table className="employee-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Role</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {employees.map((employee) => (
-            <tr key={employee.userId}>
-              <td>{employee.userId}</td>
-              <td>{employee.username}</td>
-              <td>{employee.role}</td>
-              <td>
-                {employee.userId !== 1 && (
-                  <button
-                    className="btn-delete"
-                    onClick={() => handleDeleteEmployee(employee.userId)}
-                  >
-                    Delete
-                  </button>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+          <Modal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            className="employee-modal"
+          >
+            <h2 className="modal__header">Add New Employee</h2>
+            <form className="modal__form" onSubmit={handleAddEmployee}>
+              <label>Username</label>
+              <input
+                type="text"
+                name="username"
+                value={newEmployee.username}
+                onChange={handleInputChange}
+                required
+              />
+              <label>Password</label>
+              <input
+                type="password"
+                name="password"
+                value={newEmployee.password}
+                onChange={handleInputChange}
+                required
+              />
+              <label>RECEPTIONIST/NURSE</label>
+              <input
+                type="text"
+                name="role"
+                value={newEmployee.role}
+                onChange={handleInputChange}
+                disabled
+                required
+              />
+              <button className="btn" type="submit" disabled={loading}>
+                {loading ? <ClipLoader size={20} color={"#fff"} /> : "Add Employee"}
+              </button>
+            </form>
+          </Modal>
+        </>
+      )}
 
       <ToastContainer />
     </div>

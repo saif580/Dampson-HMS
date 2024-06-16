@@ -175,13 +175,13 @@ const LandingPage = () => {
   return (
     <div>
       <header className="header">
-      {/* <video className="header__video" autoPlay muted loop>
+        {/* <video className="header__video" autoPlay muted loop>
           <source src="/video/HOSPITAL.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video> */}
         <nav className="nav">
           <img
-            src="/img/Dampson (1).gif"
+            src="/img/Dampson__5.png"
             alt="Quick credit logo"
             className="nav__logo"
             id="logo"
@@ -243,14 +243,14 @@ const LandingPage = () => {
         <div className="section__title">
           <h2 className="section__description">Features</h2>
           <h3 className="section__header">
-            Find everything you need in a modern loan application
+            Find everything you need in a healthcare management system
           </h3>
         </div>
 
         <div className="features">
           <img
-            src="img/digital-lazy.jpg"
-            data-src="img/digital.jpg"
+            src="img/image4.gif"
+            data-src="img/image4.gif"
             alt="Computer"
             className="features__img lazy-img"
           />
@@ -260,11 +260,11 @@ const LandingPage = () => {
                 <use xlinkHref="img/icons.svg#icon-monitor"></use>
               </svg>
             </div>
-            <h5 className="features__header">100% digital loan process</h5>
+            <h5 className="features__header">Efficient Patient Registration</h5>
             <p>
-              Slide your finger or mouse over the ruler of the registration form
-              above, selecting the desired amount. Then, click on Next and enter
-              the other requested personal data
+              Seamlessly register new patients and manage their information with
+              ease. Accessible by doctors and authorized staff, our system
+              ensures a streamlined onboarding process.
             </p>
           </div>
 
@@ -274,23 +274,25 @@ const LandingPage = () => {
                 <use xlinkHref="img/icons.svg#icon-trending-up"></use>
               </svg>
             </div>
-            <h5 className="features__header">Choose your loan</h5>
+            <h5 className="features__header">
+              Automated Appointment Scheduling
+            </h5>
             <p>
-              After entering the requested personal data, you can receive up to
-              10 pre-approved credit offers within 5 minutes! Finanzero has more
-              than 60 partners on its platform.
+              Book, manage, and track appointments effortlessly. Our intelligent
+              scheduling system helps avoid conflicts and ensures optimal time
+              management for both patients and healthcare providers.
             </p>
           </div>
           <img
-            src="img/grow-lazy.jpg"
-            data-src="img/grow.jpg"
+            src="img/image6.gif"
+            data-src="img/image6.gif"
             alt="Plant"
             className="features__img lazy-img"
           />
 
           <img
-            src="img/card-lazy.jpg"
-            data-src="img/card.jpg"
+            src="img/image1.gif"
+            data-src="img/image1.gif"
             alt="Credit card"
             className="features__img lazy-img"
           />
@@ -300,16 +302,17 @@ const LandingPage = () => {
                 <use xlinkHref="img/icons.svg#icon-credit-card"></use>
               </svg>
             </div>
-            <h5 className="features__header">Get the money in the account</h5>
+            <h5 className="features__header">Clinic Management</h5>
             <p>
-              Select one of the proposals and that's it! Just prove the
-              documentation provided for your loan to be approved and fall into
-              the account within 48 hours!
+              Maintain and update clinic details including doctor profiles,
+              clinic timings, specialties, and facilities. Only authorized
+              doctors can make changes, ensuring the information remains
+              accurate and up-to-date.
             </p>
           </div>
         </div>
       </section>
-{/* 
+      {/* 
       <section className="section" id="section--2">
         <div className="section__title">
           <h2 className="section__description">Operations</h2>
@@ -419,7 +422,7 @@ const LandingPage = () => {
           <div className="slide slide--2">
             <div className="testimonial">
               <h5 className="testimonial__header">
-              Trusted by Healthcare Providers
+                Trusted by Healthcare Providers
               </h5>
               <blockquote className="testimonial__text">
                 Quisquam itaque deserunt ullam, quia ea repellendus provident,
@@ -443,7 +446,7 @@ const LandingPage = () => {
           <div className="slide slide--3">
             <div className="testimonial">
               <h5 className="testimonial__header">
-              Success Stories with Dampson HMS
+                Success Stories with Dampson HMS
               </h5>
               <blockquote className="testimonial__text">
                 Debitis, nihil sit minus suscipit magni aperiam vel tenetur
@@ -474,7 +477,7 @@ const LandingPage = () => {
       <section className="section section--sign-up">
         <div className="section__title">
           <h3 className="section__header">
-          Experience the future of healthcare management with Dampson HMS. 
+            Experience the future of healthcare management with Dampson HMS.
           </h3>
         </div>
         <button className="btn btn--show-modal" onClick={openBookingModal}>
@@ -520,19 +523,11 @@ const LandingPage = () => {
             </a>
           </li>
         </ul>
-        <img
-          src="/img/Dampson (5).png"
-          alt="Logo"
-          className="footer__logo"
-        />
+        <img src="/img/Dampson (5).png" alt="Logo" className="footer__logo" />
         <p className="footer__copyright">
-          &copy; Copyright by {" "}
-          <a
-            className="footer__link twitter-link"
-            target="_blank"
-            href=""
-          >
-             Dampson HMS
+          &copy; Copyright by{" "}
+          <a className="footer__link twitter-link" target="_blank" href="">
+            Dampson HMS
           </a>{" "}
           2024. All Rights Reserved. Built by Code Mavericks
         </p>

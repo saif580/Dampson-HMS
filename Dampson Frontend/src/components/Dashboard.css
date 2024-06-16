@@ -6,7 +6,7 @@
   
   .sidebar {
     width: 280px;
-    background-color: #2d2d3f;
+    background-color: #333;
     color: white;
     display: flex;
     flex-direction: column;
@@ -15,7 +15,7 @@
   }
   
   .logo img {
-    width: 120px;
+    width: 220px;
     margin-bottom: 20px;
   }
   
@@ -35,7 +35,7 @@
   }
   
   .sidebar ul li:hover {
-    background-color: #3b3b52;
+    background-color: #444;
   }
   
   .sidebar ul li svg {
@@ -156,7 +156,7 @@
   }
 
   .logout-btn {
-    background-color: #3b3b52;
+    background-color: #444;
     color: white;
     border: none;
     padding: 15px;
@@ -174,11 +174,11 @@
   }
   
   .logout-btn:hover {
-    background-color: #4c4c6a;
+    background-color: #444;
   }
   
   .sidebar ul li.active {
-    background-color: #3b3b52;
+    background-color: #444;
   }
   
   

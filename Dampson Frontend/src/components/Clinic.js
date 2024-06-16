@@ -11,6 +11,7 @@ const Clinic = () => {
   const [clinic, setClinic] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalLoading, setModalLoading] = useState(false);
   const [newClinic, setNewClinic] = useState({
     doctorName: "",
     clinicName: "",
@@ -81,7 +82,7 @@ const Clinic = () => {
 
   const handleAddOrEditClinic = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setModalLoading(true);
     try {
       const body = { ...newClinic, clinicId: 1 };
       
@@ -94,7 +95,7 @@ const Clinic = () => {
         body: JSON.stringify(body),
       });
 
-      setLoading(false);
+      setModalLoading(false);
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -106,7 +107,7 @@ const Clinic = () => {
       setIsModalOpen(false);
       toast.success(`Clinic ${clinic ? "updated" : "added"} successfully!`);
     } catch (error) {
-      setLoading(false);
+      setModalLoading(false);
       console.error(`Error ${clinic ? "editing" : "adding"} clinic:`, error);
       toast.error(`Error ${clinic ? "editing" : "adding"} clinic: ${error.message}`);
     }
@@ -142,108 +143,110 @@ const Clinic = () => {
       )}
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} className="clinic-modal">
-        <h2 className="modal__header">{clinic ? "Edit Clinic" : "Add New Clinic"}</h2>
-        <form className="modal__form" onSubmit={handleAddOrEditClinic}>
-          <label>Doctor Name</label>
-          <input
-            type="text"
-            name="doctorName"
-            value={newClinic.doctorName}
-            onChange={handleInputChange}
-            required
-          />
-          <label>Clinic Name</label>
-          <input
-            type="text"
-            name="clinicName"
-            value={newClinic.clinicName}
-            onChange={handleInputChange}
-            required
-          />
-          <label>Clinic Time</label>
-          <input
-            type="text"
-            name="clinicTime"
-            value={newClinic.clinicTime}
-            onChange={handleInputChange}
-            required
-          />
-          <label>Max Patients Per Hour</label>
-          <input
-            type="number"
-            name="maxPatientsPerHour"
-            value={newClinic.maxPatientsPerHour}
-            onChange={handleInputChange}
-            required
-          />
-          <label>Address</label>
-          <input
-            type="text"
-            name="address"
-            value={newClinic.address}
-            onChange={handleInputChange}
-            required
-          />
-          <label>Contact Number</label>
-          <input
-            type="text"
-            name="contactNumber"
-            value={newClinic.contactNumber}
-            onChange={handleInputChange}
-            required
-          />
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            value={newClinic.email}
-            onChange={handleInputChange}
-            required
-          />
-          <label>Clinic Speciality</label>
-          <input
-            type="text"
-            name="clinicSpeciality"
-            value={newClinic.clinicSpeciality}
-            onChange={handleInputChange}
-            required
-          />
-          <label>Clinic Facilities</label>
-          <input
-            type="text"
-            name="clinicFacilities"
-            value={newClinic.clinicFacilities}
-            onChange={handleInputChange}
-            required
-          />
-          <label>Operating Days</label>
-          <input
-            type="text"
-            name="operatingDays"
-            value={newClinic.operatingDays}
-            onChange={handleInputChange}
-            required
-          />
-          <label>Appointment Duration</label>
-          <input
-            type="number"
-            name="appointmentDuration"
-            value={newClinic.appointmentDuration}
-            onChange={handleInputChange}
-            required
-          />
-          <label>Doctor Fees</label>
-          <input
-            type="number"
-            name="doctorFees"
-            value={newClinic.doctorFees}
-            onChange={handleInputChange}
-            required
-          />
-          <button className="btn" type="submit">
-            {clinic ? "Update Clinic" : "Add Clinic"}
-          </button>
-        </form>
+        <div className="modal__content">
+          <h2 className="modal__header">{clinic ? "Edit Clinic" : "Add New Clinic"}</h2>
+          <form className="modal__form" onSubmit={handleAddOrEditClinic}>
+            <label>Doctor Name</label>
+            <input
+              type="text"
+              name="doctorName"
+              value={newClinic.doctorName}
+              onChange={handleInputChange}
+              required
+            />
+            <label>Clinic Name</label>
+            <input
+              type="text"
+              name="clinicName"
+              value={newClinic.clinicName}
+              onChange={handleInputChange}
+              required
+            />
+            <label>Clinic Time</label>
+            <input
+              type="text"
+              name="clinicTime"
+              value={newClinic.clinicTime}
+              onChange={handleInputChange}
+              required
+            />
+            <label>Max Patients Per Hour</label>
+            <input
+              type="number"
+              name="maxPatientsPerHour"
+              value={newClinic.maxPatientsPerHour}
+              onChange={handleInputChange}
+              required
+            />
+            <label>Address</label>
+            <input
+              type="text"
+              name="address"
+              value={newClinic.address}
+              onChange={handleInputChange}
+              required
+            />
+            <label>Contact Number</label>
+            <input
+              type="text"
+              name="contactNumber"
+              value={newClinic.contactNumber}
+              onChange={handleInputChange}
+              required
+            />
+            <label>Email</label>
+            <input
+              type="email"
+              name="email"
+              value={newClinic.email}
+              onChange={handleInputChange}
+              required
+            />
+            <label>Clinic Speciality</label>
+            <input
+              type="text"
+              name="clinicSpeciality"
+              value={newClinic.clinicSpeciality}
+              onChange={handleInputChange}
+              required
+            />
+            <label>Clinic Facilities</label>
+            <input
+              type="text"
+              name="clinicFacilities"
+              value={newClinic.clinicFacilities}
+              onChange={handleInputChange}
+              required
+            />
+            <label>Operating Days</label>
+            <input
+              type="text"
+              name="operatingDays"
+              value={newClinic.operatingDays}
+              onChange={handleInputChange}
+              required
+            />
+            <label>Appointment Duration</label>
+            <input
+              type="number"
+              name="appointmentDuration"
+              value={newClinic.appointmentDuration}
+              onChange={handleInputChange}
+              required
+            />
+            <label>Doctor Fees</label>
+            <input
+              type="number"
+              name="doctorFees"
+              value={newClinic.doctorFees}
+              onChange={handleInputChange}
+              required
+            />
+            <button className="btn" type="submit" disabled={modalLoading}>
+              {modalLoading ? <ClipLoader size={20} color={"#fff"} /> : clinic ? "Update Clinic" : "Add Clinic"}
+            </button>
+          </form>
+        </div>
       </Modal>
 
       <ToastContainer />

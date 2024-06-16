@@ -23,6 +23,7 @@ const Prescription = () => {
   });
   const [file, setFile] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [lazyLoadCount, setLazyLoadCount] = useState(8);
 
   useEffect(() => {
     const fetchPatients = async () => {
@@ -41,6 +42,7 @@ const Prescription = () => {
         const data = await response.json();
         data.sort((a, b) => b.patientId - a.patientId);
         setPatients(data);
+        toast.success("Patients fetched successfully!")
       } catch (error) {
         console.error("Error fetching patients:", error);
         toast.error(`Error fetching patients: ${error.message}`);
@@ -147,6 +149,7 @@ const Prescription = () => {
 
   const handleSendNotification = async (patientId, recordId) => {
     try {
+      setLoading(true);
       // Fetch patient details
       const patientResponse = await fetch(
         `http://localhost:7010/patients/id/${patientId}`,
@@ -165,12 +168,6 @@ const Prescription = () => {
 
       const patient = await patientResponse.json();
       console.log(patient);
-
-      // Calculate patient's age
-      // const birthDate = new Date(patient.dateOfBirth);
-      // const ageDifMs = Date.now() - birthDate.getTime();
-      // const ageDate = new Date(ageDifMs);
-      // const age = Math.abs(ageDate.getUTCFullYear() - 1970);
 
       // Fetch clinic details
       const clinicResponse = await fetch(
@@ -209,231 +206,6 @@ const Prescription = () => {
 
       const record = await recordResponse.json();
       console.log(record);
-
-      // // Create a new PDF document
-      // const pdfDoc = await PDFDocument.create();
-      // const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
-      // const boldFont = await pdfDoc.embedFont(StandardFonts.TimesRomanBold);
-
-      // // Add a page to the PDF document
-      // const page = pdfDoc.addPage([600, 800]);
-
-      // // Embed logo image
-      // const logoImageBytes = await fetch("/img/icon-1.png").then((res) =>
-      //   res.arrayBuffer()
-      // );
-      // const logoImage = await pdfDoc.embedPng(logoImageBytes);
-      // const logoDims = logoImage.scale(0.4);
-
-      // // Draw logo image
-      // page.drawImage(logoImage, {
-      //   x: -100,
-      //   y: 710,
-      //   width: logoDims.width,
-      //   height: logoDims.height,
-      // });
-
-      // // Doctor and Clinic Info
-      // const clinicDetailsStartY = 770;
-      // page.drawText("Dr. " + (clinic[0].doctorName || ""), {
-      //   x: 240,
-      //   y: clinicDetailsStartY,
-      //   size: 12,
-      //   font: boldFont,
-      // });
-      // page.drawText(clinic[0].clinicSpeciality || "", {
-      //   x: 240,
-      //   y: clinicDetailsStartY - 20,
-      //   size: 12,
-      //   font: timesRomanFont,
-      // });
-      // page.drawText(clinic[0].clinicFacilities || "", {
-      //   x: 240,
-      //   y: clinicDetailsStartY - 40,
-      //   size: 12,
-      //   font: timesRomanFont,
-      // });
-
-      // page.drawText(clinic[0].clinicName || "", {
-      //   x: 400,
-      //   y: clinicDetailsStartY,
-      //   size: 12,
-      //   font: boldFont,
-      // });
-      // page.drawText(clinic[0].address || "", {
-      //   x: 400,
-      //   y: clinicDetailsStartY - 20,
-      //   size: 12,
-      //   font: timesRomanFont,
-      // });
-      // page.drawText(`Ph: ${clinic[0].contactNumber || ""}`, {
-      //   x: 400,
-      //   y: clinicDetailsStartY - 40,
-      //   size: 12,
-      //   font: timesRomanFont,
-      // });
-
-      // // Draw horizontal line
-      // page.drawLine({
-      //   start: { x: 20, y: clinicDetailsStartY - 50 },
-      //   end: { x: 580, y: clinicDetailsStartY - 50 },
-      //   thickness: 1,
-      //   color: rgb(0, 0, 0),
-      // });
-      // page.drawLine({
-      //   start: { x: 20, y: clinicDetailsStartY - 55 },
-      //   end: { x: 580, y: clinicDetailsStartY - 55 },
-      //   thickness: 1,
-      //   color: rgb(0, 0, 0),
-      // });
-
-      // // Patient Details
-      // const patientDetailsStartY = clinicDetailsStartY - 70;
-      // page.drawText(
-      //   `Patient ID: ${patient.patientId}    Name: ${patient.firstName || ""} ${
-      //     patient.lastName || ""
-      //   }`,
-      //   {
-      //     x: 20,
-      //     y: patientDetailsStartY,
-      //     size: 12,
-      //     font: boldFont,
-      //   }
-      // );
-      // page.drawText(`Age: ${age}    Phone: ${patient.phone || ""}`, {
-      //   x: 20,
-      //   y: patientDetailsStartY - 20,
-      //   size: 12,
-      //   font: timesRomanFont,
-      // });
-      // page.drawLine({
-      //   start: { x: 20, y: clinicDetailsStartY - 103 },
-      //   end: { x: 580, y: clinicDetailsStartY - 103 },
-      //   thickness: 1,
-      //   color: rgb(0, 0, 0),
-      // });
-
-      // // Diagnosis
-      // const diagnosisStartY = patientDetailsStartY - 50;
-      // page.drawText("Diagnosis", {
-      //   x: 20,
-      //   y: diagnosisStartY,
-      //   size: 12,
-      //   font: boldFont,
-      // });
-      // page.drawText(record.diagnosis || "", {
-      //   x: 20,
-      //   y: diagnosisStartY - 20,
-      //   size: 12,
-      //   font: timesRomanFont,
-      // });
-
-      // // Prescription Details
-      // const prescriptionStartY = diagnosisStartY - 40;
-      // page.drawText("Medicine", {
-      //   x: 20,
-      //   y: prescriptionStartY,
-      //   size: 12,
-      //   font: boldFont,
-      // });
-      // page.drawText("Dosage", {
-      //   x: 200,
-      //   y: prescriptionStartY,
-      //   size: 12,
-      //   font: boldFont,
-      // });
-      // page.drawText("Instructions", {
-      //   x: 300,
-      //   y: prescriptionStartY,
-      //   size: 12,
-      //   font: boldFont,
-      // });
-
-      // let currentY = prescriptionStartY - 20;
-      // record.prescriptionDetails.forEach((detail, index) => {
-      //   page.drawText(`${index + 1}) ${detail.medicine || ""}`, {
-      //     x: 20,
-      //     y: currentY,
-      //     size: 12,
-      //     font: timesRomanFont,
-      //   });
-      //   page.drawText(`${detail.dosage || ""}`, {
-      //     x: 200,
-      //     y: currentY,
-      //     size: 12,
-      //     font: timesRomanFont,
-      //   });
-      //   page.drawText(`${detail.instructions || ""}`, {
-      //     x: 300,
-      //     y: currentY,
-      //     size: 12,
-      //     font: timesRomanFont,
-      //   });
-      //   currentY -= 20;
-      // });
-
-      // // Tests
-      // const testsStartY = currentY - 40;
-      // page.drawText("Tests", {
-      //   x: 20,
-      //   y: testsStartY,
-      //   size: 12,
-      //   font: boldFont,
-      // });
-      // page.drawText(record.tests || "", {
-      //   x: 20,
-      //   y: testsStartY - 20,
-      //   size: 12,
-      //   font: timesRomanFont,
-      // });
-
-      // // Clinic Details at bottom
-      // const clinicBottomStartY = 70; // Adjust this value to set the distance from the bottom of the page
-
-      // // Draw the line just above clinic details
-      // page.drawLine({
-      //   start: { x: 20, y: clinicBottomStartY + 30 },
-      //   end: { x: 580, y: clinicBottomStartY + 30 },
-      //   thickness: 1,
-      //   color: rgb(0, 0, 0),
-      // });
-
-      // page.drawText(clinic[0].clinicName || "", {
-      //   x: 20,
-      //   y: clinicBottomStartY,
-      //   size: 12,
-      //   font: boldFont,
-      // });
-      // page.drawText(clinic[0].address || "", {
-      //   x: 20,
-      //   y: clinicBottomStartY - 20,
-      //   size: 12,
-      //   font: timesRomanFont,
-      // });
-      // page.drawText(`For Appointment Call: ${clinic[0].contactNumber || ""}`, {
-      //   x: 20,
-      //   y: clinicBottomStartY - 40,
-      //   size: 12,
-      //   font: timesRomanFont,
-      // });
-      // page.drawText(`Find us on: ${clinic[0].email || ""}`, {
-      //   x: 20,
-      //   y: clinicBottomStartY - 60,
-      //   size: 12,
-      //   font: timesRomanFont,
-      // });
-
-      // // Serialize the PDF document to bytes (a Uint8Array)
-      // const pdfBytes = await pdfDoc.save();
-
-      // // Convert the PDF bytes to a base64 string
-      // const pdfBase64 = btoa(
-      //   new Uint8Array(pdfBytes).reduce(
-      //     (data, byte) => data + String.fromCharCode(byte),
-      //     ""
-      //   )
-      // );
-      console.log("adasdasd" + patient);
       // Send the PDF via EmailJS
 
       const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
@@ -485,11 +257,14 @@ const Prescription = () => {
     } catch (error) {
       console.error("Error Generaing PDF" + error);
       toast.error(`Error generating PDF: ${error.message}`);
+    } finally {
+      setLoading(false);
     }
   };
 
   const handlePrint = async (patientId, recordId) => {
     try {
+      setLoading(true);
       // Fetch patient details
       const patientResponse = await fetch(
         `http://localhost:7010/patients/id/${patientId}`,
@@ -780,9 +555,10 @@ const Prescription = () => {
     } catch (error) {
       console.error("Error generating PDF:", error);
       toast.error(`Error generating PDF: ${error.message}`);
+    } finally {
+      setLoading(false);
     }
   };
-
 
   const handleViewPrescription = async (patientId) => {
     setLoading(true);
@@ -805,12 +581,17 @@ const Prescription = () => {
 
       setSelectedPrescriptions(data);
       setIsPrevModalOpen(true);
+      toast.success("Prescriptions fetched successfully!");
     } catch (error) {
       console.error("Error fetching prescriptions:", error);
       toast.error(`Error fetching prescriptions: ${error.message}`);
     } finally {
       setLoading(false);
     }
+  };
+
+  const loadMorePrescriptions = () => {
+    setLazyLoadCount((prevCount) => prevCount + 8);
   };
 
   const filteredPatients = patients.filter(
@@ -970,62 +751,79 @@ const Prescription = () => {
       >
         <h2 className="modal__header">All Prescriptions</h2>
         {selectedPrescriptions.length > 0 ? (
-          <ul className="prescription-list">
-            {selectedPrescriptions.map((prescription) => (
-              <li key={prescription.recordId} className="prescription-item">
-                <span>
-                  <strong>Record ID:</strong> {prescription.recordId}
-                </span>
-                <span>
-                  <strong>Date:</strong>{" "}
-                  {new Date(prescription.date).toLocaleDateString()}
-                </span>
-                <div className="btn-container">
-                  <button
-                    className="btn"
-                    onClick={() => window.open(prescription.images, "_blank")}
-                    disabled={
-                      !prescription.images ||
-                      prescription.images.includes("null")
-                    }
-                    style={{
-                      backgroundColor:
-                        !prescription.images ||
-                        prescription.images.includes("null")
-                          ? "gray"
-                          : "",
-                      cursor:
-                        !prescription.images ||
-                        prescription.images.includes("null")
-                          ? "not-allowed"
-                          : "pointer",
-                    }}
-                  >
-                    View Image
-                  </button>
-                  <button
-                    className="btn"
-                    onClick={() =>
-                      handleSendNotification(
-                        prescription.patientId,
-                        prescription.recordId
-                      )
-                    }
-                  >
-                    Send Notification
-                  </button>
-                  <button
-                    className="btn"
-                    onClick={() =>
-                      handlePrint(prescription.patientId, prescription.recordId)
-                    }
-                  >
-                    Print
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <>
+            <ul className="prescription-list">
+              {selectedPrescriptions
+                .slice(0, lazyLoadCount)
+                .map((prescription) => (
+                  <li key={prescription.recordId} className="prescription-item">
+                    <span>
+                      <strong>Record ID:</strong> {prescription.recordId}
+                    </span>
+                    <span>
+                      <strong>Date:</strong>{" "}
+                      {new Date(prescription.date).toLocaleDateString()}
+                    </span>
+                    <div className="btn-container">
+                      <button
+                        className="btn"
+                        onClick={() =>
+                          window.open(prescription.images, "_blank")
+                        }
+                        disabled={
+                          !prescription.images ||
+                          prescription.images.includes("null")
+                        }
+                        style={{
+                          backgroundColor:
+                            !prescription.images ||
+                            prescription.images.includes("null")
+                              ? "gray"
+                              : "",
+                          cursor:
+                            !prescription.images ||
+                            prescription.images.includes("null")
+                              ? "not-allowed"
+                              : "pointer",
+                        }}
+                      >
+                        View Image
+                      </button>
+                      <button
+                        className="btn"
+                        onClick={() =>
+                          handleSendNotification(
+                            prescription.patientId,
+                            prescription.recordId
+                          )
+                        }
+                      >
+                        Send Notification
+                      </button>
+                      <button
+                        className="btn"
+                        onClick={() =>
+                          handlePrint(
+                            prescription.patientId,
+                            prescription.recordId
+                          )
+                        }
+                      >
+                        Print
+                      </button>
+                    </div>
+                  </li>
+                ))}
+            </ul>
+            {lazyLoadCount < selectedPrescriptions.length && (
+              <button
+                className="btn load-more-btn"
+                onClick={loadMorePrescriptions}
+              >
+                Load More
+              </button>
+            )}
+          </>
         ) : (
           <p>No prescriptions found.</p>
         )}

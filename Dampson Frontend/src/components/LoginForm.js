@@ -27,8 +27,8 @@ const LoginForm = () => {
 
       if (response.ok) {
         const data = await response.json();
-        const { token, role } = data;
-        login(username, token, role);
+        const { token, role, userId } = data; // Ensure userId is part of the response
+        login(username, token, role, userId); // Pass userId to the login function
         toast.success("Login successful!");
         navigate(role === 'ROLE_DOCTOR' ? '/doctordashboard' : '/dashboard');
       } else if (response.status === 500) {

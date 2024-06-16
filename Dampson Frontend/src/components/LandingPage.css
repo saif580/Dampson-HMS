@@ -40,7 +40,7 @@ body {
   font-weight: 300;
   color: #444;
   line-height: 1.9;
-  background-color: #E2E8ED;
+  background-color: #EBEFF2;
 }
 
 .header__video {
@@ -97,8 +97,9 @@ body {
 }
 
 .btn {
+  width: auto;
   display: inline-block;
-  background-color: var(--gradient-primaryloanbutton);
+  background-color: #999;
   font-size: 1.6rem;
   font-family: inherit;
   font-weight: 500;
@@ -110,7 +111,7 @@ body {
 }
 
 .btn:hover {
-  background-color: var(--gradient-primaryloanbuttondark);
+  background-color: #444;
 }
 
 .btn--text {
@@ -138,7 +139,7 @@ body {
   padding-top: 2rem;
   padding-bottom: 2rem;
   border-radius: 3rem;
-  background: #777;
+  background: #999;
   text-decoration: none; /* Ensure links look like buttons */
   cursor: pointer;
   transition: all 0.3s;
@@ -294,7 +295,7 @@ img {
     padding: 1rem;
     font-size: 1.7rem;
     color: #222;
-    background: #777;
+    background: #999;
     border: none;
     border-radius: 2rem;
     cursor: pointer;
@@ -440,7 +441,7 @@ h4 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--gradient-primaryloanbuttondark);
+  background: var(--gradient-primaryloanbutton);
   height: 5.5rem;
   width: 5.5rem;
   border-radius: 50%;

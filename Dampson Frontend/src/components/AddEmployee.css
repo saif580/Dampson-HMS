@@ -137,12 +137,12 @@
   }
   
   .employee-list th {
-    background-color: #666666;
-    color: white;
+    background-color: #f4f4f4;
+    color: #444;
   }
 
   .employee-list .btn {
-    background-color: #666666;
+    background-color: #999;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -155,7 +155,7 @@
   }
 
   .employee-list .btn:hover {
-    background-color: #555555;
+    background-color: #444;
     color: #fff;
   }
   
@@ -177,7 +177,7 @@
   }
 
   .btn-delete {
-    background-color: #ff6b6b;
+    background-color: red;
     color: white;
     border: none;
     padding: 5px 10px;

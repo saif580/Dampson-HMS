@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import ClipLoader from "react-spinners/ClipLoader";
+import { ToastContainer, toast } from "react-toastify";
 import './Appointment.css';
 
 const Appointment = () => {
@@ -6,9 +8,11 @@ const Appointment = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
   const [lazyLoadCount, setLazyLoadCount] = useState(9);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchAppointments = async () => {
+      setLoading(true);
       try {
         const response = await fetch('http://localhost:7010/api/user-appointments', {
           method: "GET",
@@ -24,8 +28,12 @@ const Appointment = () => {
 
         const data = await response.json();
         setAppointments(sortAppointments(data));
+        toast.success("Appointments data fetched successfully!");
       } catch (error) {
         console.error('Error fetching appointments:', error);
+        toast.error('Error fetching appointments.');
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -75,33 +83,42 @@ const Appointment = () => {
           onChange={(e) => setSelectedDate(e.target.value)}
         />
       </div>
-      <table className="appointment-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Appointment Date</th>
-            <th>Appointment Time</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredAppointments.map((appointment) => (
-            <tr key={appointment.id}>
-              <td>{appointment.id}</td>
-              <td>{appointment.name}</td>
-              <td>{appointment.email}</td>
-              <td>{appointment.appointmentDate}</td>
-              <td>{appointment.appointmentTime}</td>
-              <td>{appointment.status}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      {filteredAppointments.length < appointments.length && (
-        <button className='load-more-button' onClick={loadMoreAppointments}>Load More</button>
+      {loading ? (
+        <div className="spinner">
+          <ClipLoader size={50} color={"#123abc"} loading={loading} />
+        </div>
+      ) : (
+        <>
+          <table className="appointment-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Appointment Date</th>
+                <th>Appointment Time</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredAppointments.map((appointment) => (
+                <tr key={appointment.id}>
+                  <td>{appointment.id}</td>
+                  <td>{appointment.name}</td>
+                  <td>{appointment.email}</td>
+                  <td>{appointment.appointmentDate}</td>
+                  <td>{appointment.appointmentTime}</td>
+                  <td>{appointment.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {filteredAppointments.length < appointments.length && (
+            <button className='load-more-button' onClick={loadMoreAppointments}>Load More</button>
+          )}
+        </>
       )}
+      <ToastContainer />
     </div>
   );
 };

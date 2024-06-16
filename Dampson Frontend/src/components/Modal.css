@@ -54,7 +54,7 @@
   grid-column: 1 / span 2;
   justify-self: center;
   margin-top: 1rem;
-  background: #ff6b6b;
+  background: #999;
 }
 
 .btn {
@@ -71,7 +71,7 @@
 }
 
 .btn:hover {
-  background-color: #ff5252;
+  background-color: #444;
 }
 
 .spinner {

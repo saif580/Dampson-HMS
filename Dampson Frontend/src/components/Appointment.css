@@ -52,8 +52,8 @@
 }
 
 .appointment-table th {
-  background-color: #666666;
-  color: white;
+  background-color: #f4f4f4;
+  color: #444;
 }
 
 
@@ -62,7 +62,7 @@
 
 /* Load More Button Styling */
 .load-more-button {
-  background-color: #666666;
+  background-color: #999;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -74,5 +74,5 @@
 }
 
 .load-more-button:hover {
-  background-color: #555;
+  background-color: #444;
 }
