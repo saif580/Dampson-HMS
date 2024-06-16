@@ -175,6 +175,10 @@ const LandingPage = () => {
   return (
     <div>
       <header className="header">
+      {/* <video className="header__video" autoPlay muted loop>
+          <source src="/video/HOSPITAL.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video> */}
         <nav className="nav">
           <img
             src="/img/Dampson (1).gif"
