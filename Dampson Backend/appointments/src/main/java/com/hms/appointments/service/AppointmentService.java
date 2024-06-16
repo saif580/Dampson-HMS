@@ -83,7 +83,7 @@ public class AppointmentService {
         }
 
         // Check if the appointment time is within clinic operating hours
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("h:mm a");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("h:mm a", Locale.ENGLISH);
         LocalTime clinicStartTime = LocalTime.parse(clinic.getClinicTime().split(" - ")[0], timeFormatter);
         LocalTime clinicEndTime = LocalTime.parse(clinic.getClinicTime().split(" - ")[1], timeFormatter);
 

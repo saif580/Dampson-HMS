@@ -28,6 +28,5 @@ public class LoggingGatewayFilterFactory extends AbstractGatewayFilterFactory<Lo
     }
 
     public static class Config {
-        // Put the configuration properties for your filter here
     }
 }
