@@ -1,11 +1,9 @@
 package com.hms.medicalrecordmicroservice.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class MedicalRecord {
@@ -16,10 +14,13 @@ public class MedicalRecord {
     private Long patientId;
     private Long clinicId;
     private String diagnosis;
-    private String prescription;
     private String tests;
     private String images;  // Store Cloudinary URL
     private Date date;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "medical_record_id")
+    private List<PrescriptionDetail> prescriptionDetails;
 
     public Long getClinicId() {
         return clinicId;
@@ -61,12 +62,12 @@ public class MedicalRecord {
         this.tests = tests;
     }
 
-    public String getPrescription() {
-        return prescription;
+    public List<PrescriptionDetail> getPrescriptionDetails() {
+        return prescriptionDetails;
     }
 
-    public void setPrescription(String prescription) {
-        this.prescription = prescription;
+    public void setPrescriptionDetails(List<PrescriptionDetail> prescriptionDetails) {
+        this.prescriptionDetails = prescriptionDetails;
     }
 
     public String getImages() {

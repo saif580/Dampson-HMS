@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-
 @Service
 public class MedicalRecordService {
 
@@ -34,6 +33,15 @@ public class MedicalRecordService {
             medicalRecord.setImages((String) uploadResult.get("url"));
         }
         return medicalRecordRepository.save(medicalRecord);
+    }
+
+    public String uploadFile(MultipartFile file) {
+        try {
+            Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
+            return (String) uploadResult.get("url");
+        } catch (IOException e) {
+            throw new RuntimeException("Error uploading file", e);
+        }
     }
 
     public List<MedicalRecord> getAllMedicalRecords() {

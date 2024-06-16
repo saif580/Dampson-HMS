@@ -29,10 +29,9 @@ public class MedicalRecordController {
     @Autowired
     private PdfService pdfService;
 
-
     @PostMapping(consumes = {"multipart/form-data"})
     public ResponseEntity<MedicalRecord> createMedicalRecord(
-            @RequestPart("file") MultipartFile file,
+            @RequestPart(value="file", required=false) MultipartFile file,
             @RequestPart("medicalRecord") String medicalRecordJson) {
         logger.debug("Received request to create medical record");
         try {
@@ -68,6 +67,7 @@ public class MedicalRecordController {
     public List<MedicalRecord> getMedicalRecordsByPatientId(@PathVariable Long patientId) {
         return medicalRecordService.getMedicalRecordsByPatientId(patientId);
     }
+
     @GetMapping("/{recordId}/generatePdf")
     public ResponseEntity<byte[]> generateMedicalRecordPdf(@PathVariable Long recordId) {
         try {
@@ -90,3 +90,4 @@ public class MedicalRecordController {
         }
     }
 }
+

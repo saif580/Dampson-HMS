@@ -1,6 +1,7 @@
 package com.hms.medicalrecordmicroservice.service;
 
 import com.hms.medicalrecordmicroservice.model.MedicalRecord;
+import com.hms.medicalrecordmicroservice.model.PrescriptionDetail;
 import com.hms.medicalrecordmicroservice.client.ClinicClient;
 import com.hms.medicalrecordmicroservice.client.PatientClient;
 import com.hms.medicalrecordmicroservice.dto.Clinic;
@@ -22,6 +23,10 @@ import org.springframework.stereotype.Service;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.Date;
 
 @Service
 public class PdfService {
@@ -45,6 +50,9 @@ public class PdfService {
         // Format the date of birth
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+        // Calculate the age of the patient
+        int age = calculateAge(patient.getDateOfBirth());
+
         // Title
         Paragraph title = new Paragraph("Medical Record")
                 .setTextAlignment(TextAlignment.CENTER)
@@ -59,9 +67,9 @@ public class PdfService {
                 .setMarginBottom(20);
 
         patientTable.addCell(createCell("Patient Name", true));
-        patientTable.addCell(createCell(patient.getFirstName(), false));
+        patientTable.addCell(createCell(patient.getFirstName() + " " + patient.getLastName(), false));
         patientTable.addCell(createCell("Patient Age", true));
-//        patientTable.addCell(createCell(patient.getAge(), false));
+        patientTable.addCell(createCell(String.valueOf(age), false));
         patientTable.addCell(createCell("Date of Birth", true));
         patientTable.addCell(createCell(dateFormat.format(patient.getDateOfBirth()), false));
 
@@ -96,14 +104,29 @@ public class PdfService {
         medicalRecordTable.addCell(createCell(medicalRecord.getRecordId().toString(), false));
         medicalRecordTable.addCell(createCell("Diagnosis", true));
         medicalRecordTable.addCell(createCell(medicalRecord.getDiagnosis(), false));
-        medicalRecordTable.addCell(createCell("Prescription", true));
-        medicalRecordTable.addCell(createCell(medicalRecord.getPrescription(), false));
         medicalRecordTable.addCell(createCell("Tests", true));
         medicalRecordTable.addCell(createCell(medicalRecord.getTests(), false));
         medicalRecordTable.addCell(createCell("Date", true));
         medicalRecordTable.addCell(createCell(medicalRecord.getDate().toString(), false));
 
         document.add(medicalRecordTable);
+
+        // Prescription Details Table
+        Table prescriptionTable = new Table(UnitValue.createPercentArray(new float[]{1, 3}))
+                .useAllAvailableWidth()
+                .setMarginBottom(20);
+
+        prescriptionTable.addCell(createCell("Medicine", true));
+        prescriptionTable.addCell(createCell("Dosage", true));
+        prescriptionTable.addCell(createCell("Instructions", true));
+
+        for (PrescriptionDetail detail : medicalRecord.getPrescriptionDetails()) {
+            prescriptionTable.addCell(createCell(detail.getMedicine(), false));
+            prescriptionTable.addCell(createCell(detail.getDosage(), false));
+            prescriptionTable.addCell(createCell(detail.getInstructions(), false));
+        }
+
+        document.add(prescriptionTable);
 
         // Footer
         Paragraph footer = new Paragraph("End of Medical Record")
@@ -114,6 +137,11 @@ public class PdfService {
 
         document.close();
         return byteArrayOutputStream.toByteArray();
+    }
+
+    private int calculateAge(Date dateOfBirth) {
+        LocalDate birthDate = dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        return Period.between(birthDate, LocalDate.now()).getYears();
     }
 
     private Cell createCell(String content, boolean isHeader) {
