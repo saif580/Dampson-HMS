@@ -12,6 +12,7 @@ import com.axis.billingmicroservice.service.PdfService;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -64,4 +65,18 @@ public class BillingController {
 			return ResponseEntity.notFound().build();
 		}
 	}
+
+	@GetMapping("/total-earnings")
+	public ResponseEntity<Double> getTotalEarnings() {
+		double totalEarnings = billingService.getTotalEarnings();
+		return ResponseEntity.ok(totalEarnings);
+	}
+
+	@GetMapping("/payment-methods-summary")
+	public ResponseEntity<Map<String, Long>> getPaymentMethodsSummary() {
+		Map<String, Long> paymentMethodsSummary = billingService.getPaymentMethodsSummary();
+		return ResponseEntity.ok(paymentMethodsSummary);
+	}
+
+
 }

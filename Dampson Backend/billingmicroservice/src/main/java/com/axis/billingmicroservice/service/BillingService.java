@@ -11,7 +11,9 @@ import com.axis.billingmicroservice.repository.BillingRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class BillingService {
@@ -64,4 +66,21 @@ public class BillingService {
 		}
 		return null;
 	}
+
+	// BillingService.java
+	public double getTotalEarnings() {
+		return billingRepository.findAll()
+				.stream()
+				.mapToDouble(Billing::getAmount)
+				.sum();
+	}
+
+	// BillingService.java
+	public Map<String, Long> getPaymentMethodsSummary() {
+		return billingRepository.findAll()
+				.stream()
+				.collect(Collectors.groupingBy(Billing::getPaymentMethod, Collectors.counting()));
+	}
+
+
 }
