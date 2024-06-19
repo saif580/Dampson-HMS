@@ -9,12 +9,29 @@ public class Appointment {
     private String status;
 
     // Getters and Setters
+    
+    
+    public Appointment(String id, String name, String email, String appointmentDate, String appointmentTime,
+			String status) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.appointmentDate = appointmentDate;
+		this.appointmentTime = appointmentTime;
+		this.status = status;
+	}
+    
+    public Appointment() {
+		super();
+	}
 
-    public String getId() {
+	public String getId() {
         return id;
     }
 
-    public void setId(String id) {
+
+	public void setId(String id) {
         this.id = id;
     }
 

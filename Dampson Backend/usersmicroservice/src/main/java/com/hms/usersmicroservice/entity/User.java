@@ -17,8 +17,21 @@ public class User {
 
     @Column(nullable = false)
     private String role;
+    
+    
+    public User() {
+		super();
+	}
 
-    public String getUsername() {
+	public User(Long userId, String username, String password, String role) {
+		super();
+		this.userId = userId;
+		this.username = username;
+		this.password = password;
+		this.role = role;
+	}
+
+	public String getUsername() {
         return username;
     }
 

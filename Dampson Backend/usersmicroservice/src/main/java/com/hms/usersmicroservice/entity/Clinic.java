@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Entity
 public class Clinic {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long clinicId;
 
     @ManyToOne
@@ -40,12 +40,43 @@ public class Clinic {
     private LocalDateTime updatedAt;
 
     // Getters and Setters
+    
+    
+    public Clinic(Long clinicId, User doctor, @NotBlank String doctorName, @NotBlank String clinicName,
+			@NotBlank String clinicTime, int maxPatientsPerHour, String address, String contactNumber, String email,
+			String clinicSpeciality, String clinicFacilities, String operatingDays, int appointmentDuration,
+			double doctorFees, LocalDateTime createdAt, LocalDateTime updatedAt) {
+		super();
+		this.clinicId = clinicId;
+		this.doctor = doctor;
+		this.doctorName = doctorName;
+		this.clinicName = clinicName;
+		this.clinicTime = clinicTime;
+		this.maxPatientsPerHour = maxPatientsPerHour;
+		this.address = address;
+		this.contactNumber = contactNumber;
+		this.email = email;
+		this.clinicSpeciality = clinicSpeciality;
+		this.clinicFacilities = clinicFacilities;
+		this.operatingDays = operatingDays;
+		this.appointmentDuration = appointmentDuration;
+		this.doctorFees = doctorFees;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+	}
+    
+    
+    public Clinic() {
+		super();
+	}
 
-    public Long getClinicId() {
+	public Long getClinicId() {
         return clinicId;
     }
 
-    public void setClinicId(Long clinicId) {
+   
+
+	public void setClinicId(Long clinicId) {
         this.clinicId = clinicId;
     }
 
