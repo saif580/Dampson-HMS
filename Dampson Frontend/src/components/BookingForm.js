@@ -37,7 +37,7 @@ const BookingForm = ({ onSubmit, onClose }) => {
       try {
         const jsonResponse = JSON.parse(responseData);
         if (response.ok) {
-          toast.success(jsonResponse.message);
+          toast.success(jsonResponse.message || "Booking confirmed, check your email for booking confirmation.");
           onSubmit(jsonResponse);
           setTimeout(() => {
             onClose(); // Close the modal after 5 seconds
@@ -54,7 +54,7 @@ const BookingForm = ({ onSubmit, onClose }) => {
             onClose(); // Close the modal after 5 seconds
           }, 5000);
         } else {
-          toast.error("Booking failed, please try again.");
+          toast.error(responseData);
         }
       }
     } catch (error) {

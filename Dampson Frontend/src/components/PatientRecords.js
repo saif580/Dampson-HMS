@@ -68,15 +68,24 @@ const PatientRecords = () => {
         },
         body: JSON.stringify(newPatient),
       });
-
+  
       setLoading(false);
-
+  
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(`Error adding patient: ${errorText}`);
       }
-
-      const data = await response.json();
+  
+      const contentType = response.headers.get("content-type");
+      let data;
+      if (contentType && contentType.indexOf("application/json") !== -1) {
+        data = await response.json();
+      } else {
+        const textData = await response.text();
+        toast.success(textData); // Show the plain text response if it's not JSON
+        return;
+      }
+  
       setPatients((prevPatients) => [...prevPatients, data]);
       setIsModalOpen(false);
       setNewPatient({
@@ -94,6 +103,7 @@ const PatientRecords = () => {
       toast.error(`${error.message}`);
     }
   };
+  
 
   const loadMorePatients = () => {
     setLazyLoadCount((prevCount) => prevCount + 9);

@@ -74,18 +74,33 @@ const Clinic = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setNewClinic((prevClinic) => ({
-      ...prevClinic,
-      [name]: value,
-    }));
+  
+    // Enforce contact number to be only digits
+    if (name === "contactNumber") {
+      const sanitizedValue = value.replace(/\D/g, ""); // Remove non-digit characters
+      if (sanitizedValue.length <= 10) {
+        setNewClinic((prevClinic) => ({
+          ...prevClinic,
+          [name]: sanitizedValue,
+        }));
+      }
+    } else {
+      setNewClinic((prevClinic) => ({
+        ...prevClinic,
+        [name]: value,
+      }));
+    }
   };
 
   const handleAddOrEditClinic = async (e) => {
     e.preventDefault();
+    if (newClinic.contactNumber.length !== 10) {
+      toast.error("Phone number should be of 10 digits");
+      return;
+    }
     setModalLoading(true);
     try {
       const body = { ...newClinic, clinicId: 1 };
-      
       const response = await fetch("http://localhost:7010/api/clinics", {
         method: "POST",
         headers: {
@@ -94,14 +109,14 @@ const Clinic = () => {
         },
         body: JSON.stringify(body),
       });
-
+  
       setModalLoading(false);
-
+  
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(`Error ${clinic ? "editing" : "adding"} clinic: ${errorText}`);
       }
-
+  
       const data = await response.json();
       setClinic(data);
       setIsModalOpen(false);

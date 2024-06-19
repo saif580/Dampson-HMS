@@ -31,8 +31,10 @@ const LoginForm = () => {
         login(username, token, role, userId); // Pass userId to the login function
         toast.success("Login successful!");
         navigate(role === 'ROLE_DOCTOR' ? '/doctordashboard' : '/dashboard');
+      } else if (response.status === 401) {
+        toast.error("Incorrect username or password. Please try again.");
       } else if (response.status === 500) {
-        toast.error("Internal server error. Please try again later.");
+        toast.error("Incorrect username or password. Please try again.");
       } else {
         const errorData = await response.json();
         toast.error(`Login failed: ${errorData.message}`);

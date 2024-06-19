@@ -14,6 +14,7 @@ const AddEmployee = () => {
     role: "RECEPTIONIST", // Set the default value to "RECEPTIONIST"
   });
   const [loading, setLoading] = useState(false);
+  const [isInitialFetch, setIsInitialFetch] = useState(true); // To check if it's the initial data fetch
 
   useEffect(() => {
     const fetchEmployees = async () => {
@@ -30,7 +31,10 @@ const AddEmployee = () => {
 
         const data = await response.json();
         setEmployees(data);
-        toast.success("Employees data fetched successfully!"); // Show success toast
+        if (isInitialFetch) {
+          toast.success("Employees data fetched successfully!");
+          setIsInitialFetch(false); // Ensure the toast message is only shown once
+        }
       } catch (error) {
         console.error("Error fetching employees:", error);
         toast.error(`Error fetching employees: ${error.message}`);
@@ -38,7 +42,7 @@ const AddEmployee = () => {
     };
 
     fetchEmployees();
-  }, []);
+  }, [isInitialFetch]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -61,8 +65,6 @@ const AddEmployee = () => {
         body: JSON.stringify(newEmployee),
       });
 
-      setLoading(false);
-
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(`Error adding employee: ${errorText}`);
@@ -74,9 +76,10 @@ const AddEmployee = () => {
       setNewEmployee({ username: "", password: "", role: "RECEPTIONIST" });
       toast.success("Employee added successfully!");
     } catch (error) {
-      setLoading(false);
       console.error("Error adding employee:", error);
       toast.error(`${error.message}`);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -169,7 +172,7 @@ const AddEmployee = () => {
                 onChange={handleInputChange}
                 required
               />
-              <label>RECEPTIONIST/NURSE</label>
+              <label>Role</label>
               <input
                 type="text"
                 name="role"

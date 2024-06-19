@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import AddEmployee from './AddEmployee';
 import Appointment from './Appointment';
+import BillingRecords from './BillingRecords';
 import Clinic from './Clinic';
 import './Dashboard.css';
 import PatientRecords from './PatientRecords';
@@ -189,6 +190,8 @@ const DoctorDashboard = () => {
         return <Prescription />;
       case 'Settings':
         return <Settings />;
+      case 'Bill': 
+        return <BillingRecords />;
       case 'Dashboard':
       default:
         return (

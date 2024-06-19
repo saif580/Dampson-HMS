@@ -1,12 +1,10 @@
-/* Clinic.css */
-
 .clinic {
     padding: 20px;
     font-family: Arial, sans-serif;
 }
 
 .clinic h2 {
-    font-size: 28px; /* Increased font size */
+    font-size: 24px; /* Increased font size */
     margin-bottom: 20px;
 }
 
@@ -48,7 +46,6 @@
 .clinic-modal {
     background-color: #ffffff;
     max-height: 80vh;
-    /* padding: 2.5rem; Increased padding */
     box-shadow: 0 2rem 3rem rgba(0, 0, 0, 0.2);
     z-index: 1000;
     width: 60%;
@@ -59,7 +56,7 @@
 }
   
 .clinic-modal .modal__header {
-    font-size: 2.2rem; /* Increased font size */
+    font-size: 2.4rem; /* Increased font size */
     margin-bottom: 1.5rem; /* Increased margin */
     text-align: center;
 }
@@ -67,20 +64,20 @@
 .clinic-modal .modal__form {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.2rem; /* Increased gap */
+    gap: 1.5rem; /* Increased gap */
 }
   
 .clinic-modal .modal__form label {
     display: block;
     font-weight: bold;
-    margin-bottom: 0.8rem; /* Increased margin */
-    font-size: 1.2rem; /* Increased font size */
+    margin-bottom: 1rem; /* Increased margin */
+    font-size: 1.5rem; /* Increased font size */
 }
   
 .clinic-modal .modal__form input,
 .clinic-modal .modal__form select {
-    padding: 0.8rem; /* Increased padding */
-    font-size: 1.2rem; /* Increased font size */
+    padding: 1rem; /* Increased padding */
+    font-size: 1.5rem; /* Increased font size */
     width: 100%;
 }
   
@@ -88,7 +85,7 @@
     background-color: #999;
     color: white;
     border: none;
-    padding: 1rem; /* Increased padding */
+    padding: 1.2rem; /* Increased padding */
     cursor: pointer;
     border-radius: 5px;
     transition: all 0.3s;

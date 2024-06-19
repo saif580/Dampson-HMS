@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,6 +12,10 @@ const Settings = () => {
   const [loading, setLoading] = useState(false);
 
   console.log("Username:", username); // Debugging line
+
+  useEffect(() => {
+    toast.success("Settings fetched successfully!");
+  }, []);
 
   const handleUpdatePassword = async (e) => {
     e.preventDefault();

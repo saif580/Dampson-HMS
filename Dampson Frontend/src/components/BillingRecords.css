@@ -1,0 +1,141 @@
+.billing-records {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .billing-records h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .billing-records .search-bar {
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .billing-records .btn {
+    display: inline-block;
+    background-color: #999;
+    font-size: 1.6rem;
+    font-family: inherit;
+    font-weight: 500;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 20px;
+    width: auto;
+  }
+  
+  .billing-records .btn:hover {
+    background-color: #444;
+  }
+  
+  .billing-records .spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
+  
+  .billing-records .billing-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 18px;
+  }
+  
+  .billing-records .billing-table th,
+  .billing-records .billing-table td {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    text-align: left;
+  }
+  
+  .billing-records .billing-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .billing-records .billing-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .billing-records .billing-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Modal CSS */
+  .billing-modal {
+    background-color: #ffffff;
+    padding: 2rem;
+    box-shadow: 0 2rem 3rem rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 50%;
+    max-width: 500px;
+  }
+  
+  .billing-modal .modal__header {
+    margin-bottom: 1rem;
+  }
+  
+  .billing-modal .modal__form label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .billing-modal .modal__form input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+  }
+  
+  .billing-modal .btn {
+    background-color: #999;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: all 0.3s;
+    align-self: center;
+    width: 50%;
+    grid-column: span 2;
+  }
+  
+  .billing-modal .btn:hover {
+    background-color: #444;
+  }
+  
+  .notification-button {
+    background-color: #999;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .notification-button:hover {
+    background-color: #444;
+  }
+  
+  .pdf-button {
+    background-color: #999;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .pdf-button:hover {
+    background-color: #444;
+  }

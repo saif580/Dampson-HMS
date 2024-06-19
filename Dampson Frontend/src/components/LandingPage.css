@@ -813,6 +813,34 @@ h4 {
   transition: all 0.5s;
 }
 
+.modal__form select {
+  font-size: 1.7rem;
+  padding: 1rem 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  color: #444;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMzMzMzMzIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNCAxNCI+PHBhdGggZD0iTTEgNEwwIDVsNiA2IDYtNkwxMyA0TDcgOGwtNi00ek0wIDBoMTR2MTRIMFYweiIvPjwvc3ZnPg==');
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+}
+
+.modal__form select:focus {
+  border-color: #5ec576;
+  outline: none;
+}
+
+/* Add some styles to the options */
+.modal__form select option {
+  padding: 1rem;
+  font-size: 1.7rem;
+}
+
+
 .modal__header {
   font-size: 3.25rem;
   margin-bottom: 4.5rem;
