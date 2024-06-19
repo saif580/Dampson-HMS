@@ -2,6 +2,7 @@ package com.hms.patientsmicroservice.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -61,7 +62,7 @@ public class PatientServiceImplTest {
         Patient patient = new Patient();
         patient.setEmail(email);
 
-        when(patientRepository.findByEmail(email)).thenReturn(patient);
+        when(patientRepository.findByEmail(email)).thenReturn(Collections.singletonList(patient));
 
         Patient foundPatient = patientService.getPatientByEmail(email);
         assertNotNull(foundPatient);
@@ -73,12 +74,30 @@ public class PatientServiceImplTest {
         Patient patient = new Patient();
         patient.setFirstName("John");
         patient.setLastName("Doe");
+        patient.setEmail("john.doe@example.com");
 
+        when(patientRepository.existsByEmailAndFirstName(patient.getEmail(), patient.getFirstName())).thenReturn(false);
         when(patientRepository.save(patient)).thenReturn(patient);
 
         Patient savedPatient = patientService.savePatient(patient);
         assertNotNull(savedPatient);
         assertEquals("John", savedPatient.getFirstName());
+    }
+
+    @Test
+    void testSavePatient_ThrowsException() {
+        Patient patient = new Patient();
+        patient.setFirstName("John");
+        patient.setLastName("Doe");
+        patient.setEmail("john.doe@example.com");
+
+        when(patientRepository.existsByEmailAndFirstName(patient.getEmail(), patient.getFirstName())).thenReturn(true);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            patientService.savePatient(patient);
+        });
+
+        assertEquals("A patient with the same first name already exists for this email.", exception.getMessage());
     }
 
     @Test

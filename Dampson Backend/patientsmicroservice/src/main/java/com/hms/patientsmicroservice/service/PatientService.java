@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public class PatientService {
+
     @Autowired
     private PatientRepository patientRepository;
 
@@ -21,9 +22,14 @@ public class PatientService {
     }
 
     public Patient getPatientByEmail(String email) {
-        return patientRepository.findByEmail(email);
+        List<Patient> patients = patientRepository.findByEmail(email);
+        return patients.isEmpty() ? null : patients.get(0);
     }
+
     public Patient savePatient(Patient patient) {
+        if (patientRepository.existsByEmailAndFirstName(patient.getEmail(), patient.getFirstName())) {
+            throw new IllegalArgumentException("A patient with the same first name already exists for this email.");
+        }
         return patientRepository.save(patient);
     }
 

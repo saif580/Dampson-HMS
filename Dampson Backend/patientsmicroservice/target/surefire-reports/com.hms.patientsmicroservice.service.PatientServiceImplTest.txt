@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.hms.patientsmicroservice.service.PatientServiceImplTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.451 s -- in com.hms.patientsmicroservice.service.PatientServiceImplTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.659 s -- in com.hms.patientsmicroservice.service.PatientServiceImplTest
