@@ -11,9 +11,9 @@ import java.time.LocalDateTime;
 @Entity
 public class Billing {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long billingId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long billingId;
 
 	@Column(name = "clinic_id")
 	private Long clinicId;
@@ -21,15 +21,17 @@ public class Billing {
 	@Column(name = "patient_id")
 	private Long patientId;
 
-    private Double amount;
+	private Double amount;
 
-	private String patientName;
+	private String patientFirstName;
 
-	private String patientAge;
+	private String patientLastName;
 
-    private LocalDateTime paymentDate;
+	private String patientEmail;
 
-    private String paymentMethod;
+	private LocalDateTime paymentDate;
+
+	private String paymentMethod;
 
 
 	public Long getBillingId() {
@@ -56,22 +58,6 @@ public class Billing {
 		this.amount = amount;
 	}
 
-	public String getPatientName() {
-		return patientName;
-	}
-
-	public void setPatientName(String patientName) {
-		this.patientName = patientName;
-	}
-
-	public String getPatientAge() {
-		return patientAge;
-	}
-
-	public void setPatientAge(String patientAge) {
-		this.patientAge = patientAge;
-	}
-
 	public LocalDateTime getPaymentDate() {
 		return paymentDate;
 	}
@@ -95,4 +81,29 @@ public class Billing {
 	public void setPatientId(Long patientId) {
 		this.patientId = patientId;
 	}
+
+	public String getPatientFirstName() {
+		return patientFirstName;
+	}
+
+	public void setPatientFirstName(String patientFirstName) {
+		this.patientFirstName = patientFirstName;
+	}
+
+	public String getPatientLastName() {
+		return patientLastName;
+	}
+
+	public void setPatientLastName(String patientLastName) {
+		this.patientLastName = patientLastName;
+	}
+
+	public String getPatientEmail() {
+		return patientEmail;
+	}
+
+	public void setPatientEmail(String patientEmail) {
+		this.patientEmail = patientEmail;
+	}
+
 }

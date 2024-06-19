@@ -1,9 +1,10 @@
 package com.axis.billingmicroservice.service;
 
+import com.axis.billingmicroservice.client.PatientServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
+import com.axis.billingmicroservice.dto.PatientDto;
 import com.axis.billingmicroservice.entity.Billing;
 import com.axis.billingmicroservice.exception.InvalidPaymentMethodException;
 import com.axis.billingmicroservice.exception.NoAppointmentException;
@@ -19,14 +20,19 @@ import java.util.stream.Collectors;
 public class BillingService {
 
 	@Autowired
-	private RestTemplate restTemplate;
+	private PatientServiceClient patientServiceClient;
 
 	@Autowired
 	private BillingRepository billingRepository;
 
 	private static final List<String> VALID_PAYMENT_METHODS = List.of("Online", "Cash", "Prepaid");
 
-	public Billing createBilling(Long clinicId, Long patientId, String patientName, String patientAge, Double amount, String paymentMethod) {
+	public List<Billing> getAllBillings() {
+		return billingRepository.findAll();
+	}
+
+	public Billing createBilling(Long clinicId, Long patientId, Double amount, String paymentMethod) {
+		PatientDto patient = patientServiceClient.getPatientById(patientId);
 
 		if (!VALID_PAYMENT_METHODS.contains(paymentMethod)) {
 			throw new InvalidPaymentMethodException(paymentMethod);
@@ -36,11 +42,12 @@ public class BillingService {
 			Billing billing = new Billing();
 			billing.setClinicId(clinicId);
 			billing.setPatientId(patientId);
-			billing.setPatientName(patientName);
-			billing.setPatientAge(patientAge);
+			billing.setPatientFirstName(patient.getFirstName());
+			billing.setPatientLastName(patient.getLastName());
+			billing.setPatientEmail(patient.getEmail());
 			billing.setAmount(amount);
-			billing.setPaymentDate(LocalDateTime.now());
 			billing.setPaymentMethod(paymentMethod);
+			billing.setPaymentDate(LocalDateTime.now());
 
 			return billingRepository.save(billing);
 		} else {
@@ -67,20 +74,18 @@ public class BillingService {
 		return null;
 	}
 
-	// BillingService.java
 	public double getTotalEarnings() {
 		return billingRepository.findAll()
 				.stream()
-				.mapToDouble(Billing::getAmount)
+				.map(Billing::getAmount)
+				.filter(amount -> amount != null)
+				.mapToDouble(Double::doubleValue)
 				.sum();
 	}
 
-	// BillingService.java
 	public Map<String, Long> getPaymentMethodsSummary() {
 		return billingRepository.findAll()
 				.stream()
 				.collect(Collectors.groupingBy(Billing::getPaymentMethod, Collectors.counting()));
 	}
-
-
 }

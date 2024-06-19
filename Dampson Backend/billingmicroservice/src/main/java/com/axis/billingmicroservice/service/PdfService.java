@@ -47,9 +47,9 @@ public class PdfService {
         table.addCell(createCell("Patient ID", true));
         table.addCell(createCell(billing.getPatientId().toString(), false));
         table.addCell(createCell("Patient Name", true));
-        table.addCell(createCell(billing.getPatientName(), false));
-        table.addCell(createCell("Patient Age", true));
-        table.addCell(createCell(billing.getPatientAge(), false));
+        table.addCell(createCell(billing.getPatientFirstName() + " " + billing.getPatientLastName(), false)); // Ensure these fields are set in Billing
+        table.addCell(createCell("Patient Email", true));
+        table.addCell(createCell(billing.getPatientEmail(), false)); // Ensure this field is set in Billing
         table.addCell(createCell("Amount", true));
         table.addCell(createCell(billing.getAmount().toString(), false));
         table.addCell(createCell("Payment Date", true));
@@ -77,7 +77,7 @@ public class PdfService {
                     .setBorder(new SolidBorder(ColorConstants.BLACK, 1))
                     .setBold();
         } else {
-            cell.setBorder(Border.NO_BORDER);
+            cell.setBorder(new SolidBorder(ColorConstants.BLACK, 1));
         }
         return cell;
     }

@@ -6,7 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.axis.billingmicroservice.entity.Billing;
+		import com.axis.billingmicroservice.entity.Billing;
 import com.axis.billingmicroservice.service.BillingService;
 import com.axis.billingmicroservice.service.PdfService;
 
@@ -25,13 +25,16 @@ public class BillingController {
 	@Autowired
 	private PdfService pdfService;
 
+	@GetMapping
+	public List<Billing> getAllBillings() {
+		return billingService.getAllBillings();
+	}
+
 	@PostMapping("/create")
 	public Billing createBilling(@RequestBody Billing billing) {
 		return billingService.createBilling(
 				billing.getClinicId(),
 				billing.getPatientId(),
-				billing.getPatientName(),
-				billing.getPatientAge(),
 				billing.getAmount(),
 				billing.getPaymentMethod()
 		);
