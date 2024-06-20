@@ -30,8 +30,16 @@ public class ClinicDTO {
         this.appointmentDuration = appointmentDuration;
         this.clinicSpeciality = clinicSpeciality;
     }
+    
+    
 
-    // Getters and Setters
+    public ClinicDTO() {
+		super();
+	}
+
+
+
+	// Getters and Setters
 
     public Long getClinicId() {
         return clinicId;

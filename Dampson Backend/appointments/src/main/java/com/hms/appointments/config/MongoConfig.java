@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
 
 import java.time.LocalTime;
@@ -17,7 +18,12 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
     protected String getDatabaseName() {
         return "appointments_db"; // Replace with your database name
     }
-
+    
+    @Bean
+    public MongoTemplate mongoTemplate() {
+        // Configure and return MongoTemplate instance
+        return new MongoTemplate(null/* configure MongoDBFactory and MongoConverter */);
+    }
     @Bean
     public MongoCustomConversions customConversions() {
         List<Converter<?, ?>> converters = new ArrayList<>();
