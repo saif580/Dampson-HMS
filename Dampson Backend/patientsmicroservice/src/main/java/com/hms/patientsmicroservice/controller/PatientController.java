@@ -53,7 +53,8 @@ public class PatientController {
     public ResponseEntity<String> registerPatient(@RequestBody Patient patient) {
         logger.debug("Registering patient: {}", patient);
         try {
-            Patient registeredPatient = patientService.savePatient(patient);
+            @SuppressWarnings("unused")
+			Patient registeredPatient = patientService.savePatient(patient);
             return ResponseEntity.ok("Patient registered successfully.");
         } catch (IllegalArgumentException e) {
             logger.error("Error registering patient: {}", patient, e);
