@@ -9,7 +9,21 @@ public class Patient {
     private String address;
     private String dateOfBirth;
 
-    public Long getPatientId() {
+    
+    
+    public Patient(Long patientId, String firstName, String lastName, String email, String phone, String address,
+			String dateOfBirth) {
+		super();
+		this.patientId = patientId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public Long getPatientId() {
         return patientId;
     }
 
