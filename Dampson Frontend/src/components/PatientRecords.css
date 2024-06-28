@@ -1,0 +1,130 @@
+.patient-records {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.patient-records h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.patient-records .search-bar {
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.patient-records .btn {
+  display: inline-block;
+  background-color: #999;
+  font-size: 1.6rem;
+  font-family: inherit;
+  font-weight: 500;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 20px;
+  width: auto;
+}
+
+.patient-records .btn:hover {
+  background-color: #444;
+}
+
+.patient-records .spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.patient-records .patient-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 18px;
+  overflow-x: auto; /* Enable horizontal scrolling on smaller screens */
+}
+
+.patient-records .patient-table th,
+.patient-records .patient-table td {
+  border: 1px solid #ddd;
+  padding: 12px 15px;
+  text-align: left;
+  white-space: nowrap; /* Prevent line breaks in table cells */
+}
+
+.patient-records .patient-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.patient-records .patient-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.patient-records .patient-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Modal CSS */
+.patient-modal {
+  background-color: #ffffff;
+  padding: 2rem;
+  box-shadow: 0 2rem 3rem rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  width: 90%; /* Adjust width for responsiveness */
+  max-width: 500px;
+  margin: 0 auto; /* Center modal horizontally */
+}
+
+.patient-modal .modal__header {
+  margin-bottom: 1rem;
+}
+
+.patient-modal .modal__form label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.patient-modal .modal__form input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+}
+
+.patient-modal .btn {
+  background-color: #999;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: all 0.3s;
+  align-self: center;
+  width: 100%; /* Make button full-width */
+}
+
+.patient-modal .btn:hover {
+  background-color: #444;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .patient-records .patient-table {
+    font-size: 16px; /* Adjust font size for smaller screens */
+  }
+  
+  .patient-records .patient-table th,
+  .patient-records .patient-table td {
+    padding: 10px; /* Adjust cell padding for smaller screens */
+    font-size: 14px; /* Further reduce font size for smaller screens */
+  }
+}

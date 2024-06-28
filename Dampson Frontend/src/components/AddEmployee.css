@@ -1,0 +1,192 @@
+.add-employee {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .add-employee h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .add-employee .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .add-employee label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .add-employee input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .add-employee button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background: #4caf50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-employee button:hover {
+    background: #45a049;
+  }
+  
+  /* Employee Modal Styles */
+  .employee-modal {
+    background-color: #ffffff;
+    padding: 2rem;
+    box-shadow: 0 2rem 3rem rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 50%;
+    max-width: 500px;
+  }
+  
+  .employee-modal .btn--close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .employee-modal .modal__header {
+    margin-bottom: 1rem;
+  }
+  
+  .employee-modal .modal__form label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .employee-modal .modal__form input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+  }
+  
+  .employee-modal .btn {
+    background-color: var(--gradient-primaryloanbutton);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: all 0.3s;
+  }
+  
+  .employee-modal .btn:hover {
+    background-color: var(--gradient-primaryloanbuttondark);
+  }
+  
+  /* Employee List Styles */
+  .employee-list {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .employee-list h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .employee-list table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 18px;
+  }
+  
+  .employee-list th,
+  .employee-list td {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    text-align: left;
+  }
+  
+  .employee-list th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .employee-list tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .employee-list tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .employee-list th,
+  .employee-list td {
+    text-align: left;
+    padding: 15px;
+    font-size: 18px;
+  }
+  
+  .employee-list th {
+    background-color: #f4f4f4;
+    color: #444;
+  }
+
+  .employee-list .btn {
+    background-color: #999;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    width: auto;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+  }
+
+  .employee-list .btn:hover {
+    background-color: #444;
+    color: #fff;
+  }
+  
+  /* Load More Button Styling */
+  .load-more-button {
+    background-color: #666666;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .load-more-button:hover {
+    background-color: #555;
+  }
+
+  .btn-delete {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-delete:hover {
+    background-color: #ff5252;
+  }
+
