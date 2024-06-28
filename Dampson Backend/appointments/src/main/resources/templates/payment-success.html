@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Success</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #28a745;
+        }
+        .amount {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        .countdown {
+            font-size: 1em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Payment Successful!</h1>
+    <p class="amount">Amount: <!-- AMOUNT_PLACEHOLDER --></p>
+    <p class="error" hidden><!-- ERROR_PLACEHOLDER --></p>
+    <p class="countdown">This window will close in <span id="countdown">10</span> seconds.</p>
+</div>
+<script>
+    var countdownElement = document.getElementById('countdown');
+    var countdown = 10;
+    var countdownInterval = setInterval(function() {
+        countdown--;
+        countdownElement.textContent = countdown;
+        if (countdown <= 0) {
+            clearInterval(countdownInterval);
+            window.close();
+        }
+    }, 1000);
+</script>
+</body>
+</html>

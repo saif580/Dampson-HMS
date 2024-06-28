@@ -1,0 +1,67 @@
+spring:
+  application:
+    name: appointments
+  data:
+    mongodb:
+      uri: mongodb+srv://dampsonhms:dampson%40123@dampsonhms.whxc0yz.mongodb.net/appointments_db?retryWrites=true&w=majority&appName=dampsonhms
+  datasource:
+    url: jdbc:mysql://dampsonhms.cvscsscc6mkv.ap-south-1.rds.amazonaws.com/transaction_db
+    username: root
+    password: Dampson123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQLDialect
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eurekaserver:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+
+stripe:
+  api:
+    key: sk_test_51Mo6H5SGsETocz7J9gOWvNfItXIBVxg2Q9sRpBKt1BmCJZXvj7I1VKol4PcPH7IpVPvlOlqowWJJEsJaj5NhQGJ400BeYXkblj
+
+payment:
+  success:
+    url: http://15.206.139.27:7001/payment-success
+  cancel:
+    url: http://15.206.139.27:7001/payment-failed
+
+thymeleaf:
+  prefix: classpath:/templates/
+  suffix: .html
+  cache: false
+
+logging:
+  level:
+    org:
+      springframework: DEBUG
+      mongodb:
+        driver: DEBUG
+    com:
+      hms:
+        appointments: DEBUG
+      stripe: DEBUG
+      netflix:
+        discovery: DEBUG
+        eureka: DEBUG
+      springframework:
+        cloud:
+          client:
+            loadbalancer: DEBUG
+    reactor:
+      netty:
+        http:
+          client: DEBUG
+          server: DEBUG
+
+profiles:
+  active: default
