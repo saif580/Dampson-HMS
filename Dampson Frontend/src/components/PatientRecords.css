@@ -44,11 +44,16 @@
   height: 200px;
 }
 
+.patient-records .patient-table-container {
+  width: 100%;
+  overflow-x: auto; /* Enable horizontal scrolling */
+}
+
 .patient-records .patient-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 18px;
-  overflow-x: auto; /* Enable horizontal scrolling on smaller screens */
+  table-layout: fixed; /* Fix table layout to prevent overflow */
 }
 
 .patient-records .patient-table th,
@@ -57,6 +62,8 @@
   padding: 12px 15px;
   text-align: left;
   white-space: nowrap; /* Prevent line breaks in table cells */
+  overflow: hidden; /* Hide overflow content */
+  text-overflow: ellipsis; /* Add ellipsis for overflowing content */
 }
 
 .patient-records .patient-table th {
@@ -118,7 +125,13 @@
 
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
+  .patient-records .patient-table-container {
+    overflow-x: auto; /* Enable horizontal scrolling */
+  }
+  
   .patient-records .patient-table {
+    width: 100%;
+    min-width: 800px; /* Ensure a minimum width for the table */
     font-size: 16px; /* Adjust font size for smaller screens */
   }
   

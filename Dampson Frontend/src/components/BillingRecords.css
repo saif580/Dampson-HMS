@@ -52,15 +52,19 @@
 .billing-records .billing-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 18px;
+  font-size: 16px; /* Make the font size smaller */
+  table-layout: fixed; /* Fix table layout to prevent overflow */
 }
 
 .billing-records .billing-table th,
 .billing-records .billing-table td {
   border: 1px solid #ddd;
-  padding: 12px 15px;
+  padding: 8px 10px; /* Reduce padding */
   text-align: left;
-  white-space: nowrap; /* Prevent wrapping of table content */
+  white-space: normal; /* Allow wrapping of table content */
+  overflow: hidden; /* Hide overflow content */
+  text-overflow: ellipsis; /* Add ellipsis for overflowing content */
+  word-wrap: break-word; /* Break words to wrap content */
 }
 
 .billing-records .billing-table th {
@@ -74,6 +78,30 @@
 
 .billing-records .billing-table tr:hover {
   background-color: #f1f1f1;
+}
+
+/* Button container */
+.button-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow buttons to wrap */
+  gap: 10px; /* Add space between buttons */
+}
+
+.notification-button,
+.pdf-button {
+  background-color: #999;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  flex: 1; /* Allow buttons to expand and take equal space */
+  text-align: center; /* Center button text */
+}
+
+.notification-button:hover,
+.pdf-button:hover {
+  background-color: #444;
 }
 
 /* Modal CSS */
@@ -122,32 +150,6 @@
   background-color: #444;
 }
 
-.notification-button {
-  background-color: #999;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.notification-button:hover {
-  background-color: #444;
-}
-
-.pdf-button {
-  background-color: #999;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.pdf-button:hover {
-  background-color: #444;
-}
-
 /* Responsive Styles */
 @media (max-width: 768px) {
   .billing-records h2 {
@@ -166,13 +168,51 @@
     width: 100%; /* Full-width button */
   }
 
+  .billing-table-container {
+    overflow-x: auto; /* Enable horizontal scrolling */
+  }
+
+  .billing-table {
+    width: 100%;
+    min-width: 950px; /* Ensure a minimum width for the table */
+  }
+
+  .button-container {
+    justify-content: center; /* Center buttons in the container */
+  }
+
   .billing-modal {
-    width: 95%;
+    width: 95%; /* Increased width to make the modal more visible */
+    max-width: 600px; /* Set a reasonable max width */
     padding: 1rem;
+    max-height: 90vh; /* Ensure modal doesn't exceed the viewport height */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds max-height */
   }
 
   .billing-modal .btn {
     width: 100%; /* Full-width button */
     padding: 0.5rem;
   }
+
+  .billing-modal .modal__form input,
+  .billing-modal .modal__form select {
+    font-size: 14px; /* Adjust font size */
+    padding: 0.8rem; /* Adjust padding */
+    width: 100%; /* Full-width inputs */
+  }
+
+  .billing-modal .modal__form label {
+    font-size: 14px; /* Adjust label font size */
+  }
+
+  .billing-modal .modal__form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Add space between form elements */
+  }
+
+  .billing-modal .modal__form .btn {
+    margin-top: 10px; /* Add space above the button */
+  }
 }
+

@@ -197,6 +197,8 @@ const DoctorDashboard = () => {
   }, []);
 
   const doughnutOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       tooltip: {
         callbacks: {
